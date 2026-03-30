@@ -4,13 +4,13 @@ import Image from "next/image";
 import { FiArrowUpRight, FiLayers, FiGrid, FiRotateCcw, FiBox, FiHome, FiMonitor, FiLayout } from "react-icons/fi";
 
 const services = [
-  { title: "Precast",            sub: "Concrete Detailing",        image: "/pre-cast.png",         href: "/services/precast",          icon: <FiLayers size={14}/>,   col: 1 },
-  { title: "Rebar Installation", sub: "Structural Reinforcement",  image: "/reber.png",            href: "/services/rebar",            icon: <FiGrid size={14}/>,     col: 1 },
-  { title: "Tilt-Up",           sub: "Shop Drawings & Embeds",    image: "/tilt-up.png",          href: "/services/tilt-up",          icon: <FiRotateCcw size={14}/>, col: 1 },
-  { title: "Structural Steel",  sub: "Detailing & Engineering",   image: "/structural-steel.png", href: "/services/structural-steel", icon: <FiBox size={14}/>,      col: 1 },
-  { title: "PEMB",              sub: "Pre-Engineered Metal Bldgs",image: "/pemb.png",             href: "/services/pemb",             icon: <FiHome size={14}/>,     col: 2 },
-  { title: "BIM Consulting",    sub: "Coordination & Clash Detect",image: "/bim-consulting.png",  href: "/services/bim-consulting",   icon: <FiMonitor size={14}/>,  col: 2 },
-  { title: "Forming & Shoring", sub: "Cast-in-Place Concrete",    image: "/forming.png",          href: "/services/forming",          icon: <FiLayout size={14}/>,   col: 1 },
+  { title: "Precast",            sub: "Concrete Detailing",         image: "/pre-cast.png",         href: "/services/precast",          icon: <FiLayers size={14}/>    },
+  { title: "Rebar Installation", sub: "Structural Reinforcement",   image: "/reber.png",            href: "/services/rebar",            icon: <FiGrid size={14}/>      },
+  { title: "Tilt-Up",           sub: "Shop Drawings & Embeds",     image: "/tilt-up.png",          href: "/services/tilt-up",          icon: <FiRotateCcw size={14}/> },
+  { title: "Structural Steel",  sub: "Detailing & Engineering",    image: "/structural-steel.png", href: "/services/structural-steel", icon: <FiBox size={14}/>       },
+  { title: "PEMB",              sub: "Pre-Engineered Metal Bldgs", image: "/pemb.png",             href: "/services/pemb",             icon: <FiHome size={14}/>      },
+  { title: "BIM Consulting",    sub: "Coordination & Clash Detect",image: "/bim-consulting.png",   href: "/services/bim-consulting",   icon: <FiMonitor size={14}/>   },
+  { title: "Forming & Shoring", sub: "Cast-in-Place Concrete",     image: "/forming.png",          href: "/services/forming",          icon: <FiLayout size={14}/>    },
 ];
 
 export default function AllServices() {
