@@ -7,7 +7,7 @@ export default function Hero() {
         .hero {
           position: relative;
           width: 100%;
-          min-height: 88vh;
+          min-height: 100vh;
           display: flex;
           align-items: center;
           overflow: hidden;
@@ -65,7 +65,7 @@ export default function Hero() {
           50% { opacity: 0.5; transform: scale(1.4); }
         }
         .hero-title {
-          font-size: clamp(2.4rem, 5vw, 4rem);
+          font-size: clamp(2rem, 5vw, 3.5rem);
           font-weight: 800;
           line-height: 1.1;
           color: #ffffff;

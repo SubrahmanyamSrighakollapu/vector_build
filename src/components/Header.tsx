@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 
@@ -19,11 +20,16 @@ export default function Header() {
     <>
       <style>{`
         .header {
-          position: sticky;
+          position: fixed;
           top: 0;
-          z-index: 100;
+          left: 0;
+          right: 0;
+          z-index: 1000;
           background: #281750;
           box-shadow: 0 2px 20px rgba(40,23,80,0.18);
+        }
+        .header-spacer {
+          height: 70px;
         }
         .header-inner {
           width: 100%;
@@ -35,23 +41,14 @@ export default function Header() {
           position: relative;
         }
         .logo {
-          font-size: 1.5rem;
-          font-weight: 800;
-          color: #ffffff;
-          letter-spacing: -0.5px;
           display: flex;
           align-items: center;
-          gap: 8px;
         }
-        .logo span {
-          color: #ab8cf5;
-        }
-        .logo-dot {
-          width: 8px;
-          height: 8px;
-          background: #ab8cf5;
-          border-radius: 50%;
-          display: inline-block;
+        .logo img {
+          height: 40px;
+          width: auto;
+          object-fit: contain;
+          display: block;
         }
         .nav {
           display: flex;
@@ -155,8 +152,7 @@ export default function Header() {
       <header className="header">
         <div className="header-inner">
           <Link href="/" className="logo">
-            <span className="logo-dot" />
-            Vector<span>Build</span>
+            <Image src="/vector-build-logo.jpeg" alt="VectorBuild" width={140} height={40} style={{ height: 40, width: "auto", objectFit: "contain" }} priority />
           </Link>
           <nav className="nav">
             {navLinks
@@ -191,6 +187,7 @@ export default function Header() {
           ))}
         </div>
       </header>
+      <div className="header-spacer" />
     </>
   );
 }
