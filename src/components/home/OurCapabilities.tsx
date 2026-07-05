@@ -1,66 +1,36 @@
+"use client";
 import Link from "next/link";
-import { FiLayers, FiGrid, FiRotateCcw, FiBox, FiMonitor, FiLayout, FiHome, FiArrowRight } from "react-icons/fi";
-import { ReactNode } from "react";
+import { motion } from "framer-motion";
+import { FiLayers, FiRotateCcw, FiGrid, FiHome, FiArrowUpRight } from "react-icons/fi";
 
-type Capability = {
-  num: string;
-  icon: ReactNode;
-  title: string;
-  desc: string;
-  href: string;
-  wide?: boolean;
-};
-
-const capabilities: Capability[] = [
+const capabilities = [
   {
     num: "01",
-    icon: <FiLayers size={18} />,
+    icon: <FiLayers size={20} />,
     title: "Precast",
-    desc: "We provide high-precision Precast Concrete Detailing Services for commercial, industrial, residential, infrastructure, and institutional projects worldwide.",
+    desc: "We provide precision-driven Precast Concrete Detailing Services for commercial, residential, industrial, infrastructure, and institutional projects worldwide. Our detailing solutions ensure accurate coordination, efficient manufacturing, and seamless on-site installation.",
     href: "/services",
   },
   {
     num: "02",
-    icon: <FiGrid size={18} />,
-    title: "Rebar Detailing",
-    desc: "We provide comprehensive, standards-compliant Rebar Detailing Services for residential, commercial, high-rise, industrial, and infrastructure projects worldwide.",
+    icon: <FiRotateCcw size={20} />,
+    title: "Tilt-up Services",
+    desc: "We deliver precise and construction-ready Tilt-Up Shop Drawings and Embed Panel Detailing Services, ensuring seamless coordination and compliance with project specifications.",
     href: "/services",
   },
   {
     num: "03",
-    icon: <FiRotateCcw size={18} />,
-    title: "Tilt-Up Services",
-    desc: "We provide accurate and construction-ready Tilt-Up Shop Drawings and Embed Detailing Services tailored to meet contractor and engineer requirements.",
-    href: "/services",
+    icon: <FiGrid size={20} />,
+    title: "Mini/Self Storages",
+    desc: "We produce accurate shop drawings, fabrication drawings, framing layouts, and coordinated CAD/BIM models that enhance structural accuracy, optimize space utilization, and support efficient fabrication and construction.",
+    href: "/services/mini-self-storages",
   },
   {
     num: "04",
-    icon: <FiBox size={18} />,
-    title: "Structural Steel",
-    desc: "We deliver high-precision structural steel detailing and engineering solutions tailored to international construction standards and project requirements.",
-    href: "/services",
-  },
-  {
-    num: "05",
-    icon: <FiMonitor size={18} />,
-    title: "BIM Consulting Services",
-    desc: "Smart BIM solutions for better coordination, clash detection, and efficient project delivery.",
-    href: "/services",
-  },
-  {
-    num: "06",
-    icon: <FiLayout size={18} />,
-    title: "Formwork Detailing",
-    desc: "We provide comprehensive Formwork Detailing Services for cast-in-place concrete structures, delivering precise, fabrication-ready drawings.",
-    href: "/services",
-  },
-  {
-    num: "07",
-    icon: <FiHome size={18} />,
+    icon: <FiHome size={20} />,
     title: "PEMB (Pre-Engineered Metal Buildings)",
-    desc: "Complete building systems designed for optimum strength and flexibility. Our PEMB solutions are perfect for hangars, manufacturing plants, and logistics centers.",
+    desc: "Complete building systems designed for optimum strength and flexibility. Our PEMB solutions are perfect for hangars, manufacturing plants, and logistics centers, offering a significant reduction in construction time and cost.",
     href: "/services",
-    wide: true,
   },
 ];
 
@@ -68,166 +38,269 @@ export default function OurCapabilities() {
   return (
     <>
       <style>{`
-        .capabilities {
-          padding: 96px 48px;
-          background: #f5f5f5;
+        .cap {
+          padding: 120px 80px;
+          background: #0a0618;
+          position: relative;
+          overflow: hidden;
         }
-        .capabilities-header {
-          margin-bottom: 56px;
+        .cap::before {
+          content: '';
+          position: absolute;
+          top: 0; left: 0; right: 0;
+          height: 1px;
+          background: linear-gradient(90deg, transparent, rgba(171,140,245,0.4), transparent);
         }
-        .capabilities-label {
+        .cap-mesh {
+          position: absolute;
+          inset: 0;
+          background-image:
+            linear-gradient(rgba(171,140,245,0.04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(171,140,245,0.04) 1px, transparent 1px);
+          background-size: 80px 80px;
+          pointer-events: none;
+        }
+        .cap-glow {
+          position: absolute;
+          top: -100px;
+          right: -100px;
+          width: 500px;
+          height: 500px;
+          background: radial-gradient(circle, rgba(171,140,245,0.1) 0%, transparent 65%);
+          pointer-events: none;
+        }
+        .cap-inner { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; }
+
+        .cap-header {
           display: flex;
+          align-items: flex-end;
+          justify-content: space-between;
+          margin-bottom: 64px;
+          gap: 32px;
+          flex-wrap: wrap;
+        }
+        .cap-eyebrow {
+          display: inline-flex;
           align-items: center;
-          gap: 10px;
+          gap: 8px;
+          font-size: 0.72rem;
+          font-weight: 700;
+          letter-spacing: 2.5px;
+          text-transform: uppercase;
+          color: #ab8cf5;
           margin-bottom: 16px;
         }
-        .capabilities-label-line {
-          width: 36px;
-          height: 3px;
+        .cap-eyebrow::before {
+          content: '';
+          width: 28px; height: 2px;
           background: #ab8cf5;
           border-radius: 2px;
         }
-        .capabilities-label-text {
-          font-size: 0.78rem;
-          font-weight: 700;
-          letter-spacing: 2px;
-          text-transform: uppercase;
-          color: #281750;
+        .cap-title {
+          font-size: clamp(2rem, 3.5vw, 3rem);
+          font-weight: 900;
+          color: #ffffff;
+          letter-spacing: -1px;
+          line-height: 1.1;
         }
-        .capabilities-title {
-          font-size: clamp(1.6rem, 3vw, 2.2rem);
-          font-weight: 800;
-          color: #281750;
-          margin-bottom: 10px;
+        .cap-title span { color: #ab8cf5; }
+        .cap-subtitle {
+          font-size: 0.95rem;
+          color: rgba(216,202,250,0.55);
+          max-width: 320px;
+          line-height: 1.7;
+          text-align: right;
         }
-        .capabilities-subtitle {
-          font-size: 1rem;
-          color: #525252;
-        }
-        .capabilities-grid {
+
+        .cap-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 20px;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 16px;
         }
+
         .cap-card {
-          background: #ffffff;
-          border-radius: 14px;
-          padding: 28px 24px 24px;
-          border: 1px solid #e5e5e5;
+          background: rgba(255,255,255,0.03);
+          border: 1px solid rgba(171,140,245,0.1);
+          border-radius: 16px;
+          padding: 32px 28px;
           position: relative;
           overflow: hidden;
-          transition: all 0.25s ease;
+          transition: all 0.35s ease;
+          cursor: pointer;
           display: flex;
           flex-direction: column;
         }
+        .cap-card::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(135deg, rgba(171,140,245,0.08) 0%, transparent 60%);
+          opacity: 0;
+          transition: opacity 0.35s ease;
+          border-radius: 16px;
+        }
         .cap-card:hover {
-          border-color: #ab8cf5;
-          box-shadow: 0 12px 40px rgba(40,23,80,0.1);
-          transform: translateY(-4px);
+          border-color: rgba(171,140,245,0.35);
+          background: rgba(171,140,245,0.06);
+          transform: translateY(-6px);
+          box-shadow: 0 24px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(171,140,245,0.2);
         }
-        .cap-card-wide {
-          grid-column: 1 / -1;
-          flex-direction: row;
-          align-items: flex-start;
-          gap: 32px;
-          border-left: 4px solid #281750;
-        }
-        .cap-card-wide:hover {
-          border-left-color: #ab8cf5;
-        }
-        .cap-card-wide .cap-card-body {
-          flex: 1;
-        }
+        .cap-card:hover::before { opacity: 1; }
+
         .cap-num {
           position: absolute;
-          top: 16px;
-          right: 20px;
-          font-size: 3.5rem;
+          top: 16px; right: 20px;
+          font-size: 4rem;
           font-weight: 900;
-          color: rgba(40,23,80,0.06);
+          color: rgba(171,140,245,0.06);
           line-height: 1;
           pointer-events: none;
           user-select: none;
+          transition: color 0.35s ease;
         }
-        .cap-icon {
-          width: 40px;
-          height: 40px;
+        .cap-card:hover .cap-num { color: rgba(171,140,245,0.12); }
+
+        .cap-icon-wrap {
+          width: 48px; height: 48px;
+          border-radius: 12px;
           background: rgba(171,140,245,0.12);
-          border-radius: 10px;
+          border: 1px solid rgba(171,140,245,0.2);
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 1.1rem;
-          margin-bottom: 16px;
-          color: #281750;
+          color: #ab8cf5;
+          margin-bottom: 20px;
           flex-shrink: 0;
+          transition: all 0.3s ease;
         }
-        .cap-title {
-          font-size: 1rem;
+        .cap-card:hover .cap-icon-wrap {
+          background: #ab8cf5;
+          color: #0a0618;
+          border-color: #ab8cf5;
+          box-shadow: 0 8px 24px rgba(171,140,245,0.4);
+        }
+
+        .cap-card-title {
+          font-size: 1.05rem;
           font-weight: 700;
-          color: #281750;
+          color: #ffffff;
           margin-bottom: 10px;
         }
-        .cap-desc {
-          font-size: 0.875rem;
-          color: #525252;
+        .cap-card-desc {
+          font-size: 0.85rem;
+          color: rgba(216,202,250,0.55);
           line-height: 1.7;
           flex: 1;
           margin-bottom: 20px;
         }
-        .cap-link {
+        .cap-card-link {
           display: inline-flex;
           align-items: center;
           gap: 6px;
-          font-size: 0.82rem;
+          font-size: 0.8rem;
           font-weight: 700;
-          color: #ffffff;
-          background: #281750;
-          padding: 8px 16px;
-          border-radius: 6px;
-          transition: all 0.2s ease;
+          color: #ab8cf5;
+          transition: gap 0.2s ease;
           align-self: flex-start;
         }
-        .cap-link:hover {
+        .cap-card:hover .cap-card-link { gap: 10px; }
+
+        .cap-cta {
+          margin-top: 48px;
+          text-align: center;
+        }
+        .cap-cta-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          background: rgba(171,140,245,0.1);
+          border: 1px solid rgba(171,140,245,0.25);
+          color: #d8cafa;
+          font-size: 0.9rem;
+          font-weight: 600;
+          padding: 14px 32px;
+          border-radius: 10px;
+          transition: all 0.3s ease;
+          backdrop-filter: blur(8px);
+        }
+        .cap-cta-btn:hover {
           background: #ab8cf5;
-          color: #281750;
+          color: #0a0618;
+          border-color: #ab8cf5;
+          transform: translateY(-2px);
+          box-shadow: 0 12px 32px rgba(171,140,245,0.35);
         }
-        @media (max-width: 900px) {
-          .capabilities { padding: 64px 20px; }
-          .capabilities-grid { grid-template-columns: 1fr 1fr; }
-          .cap-card-wide { grid-column: 1 / -1; flex-direction: column; }
+
+        @media (max-width: 1024px) {
+          .cap { padding: 80px 48px; }
+          .cap-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+          .cap-subtitle { text-align: left; }
         }
-        @media (max-width: 600px) {
-          .capabilities-grid { grid-template-columns: 1fr; }
+        @media (max-width: 640px) {
+          .cap { padding: 64px 24px; }
+          .cap-grid { grid-template-columns: 1fr; }
+          .cap-header { flex-direction: column; align-items: flex-start; }
         }
       `}</style>
-      <section className="capabilities">
-        <div className="capabilities-header">
-          <div className="capabilities-label">
-            <div className="capabilities-label-line" />
-            <span className="capabilities-label-text">Our Capabilities</span>
-          </div>
-          <h2 className="capabilities-title">Engineering Precision</h2>
-          <p className="capabilities-subtitle">
-            Comprehensive industrial construction services tailored for the modern age.
-          </p>
-        </div>
-        <div className="capabilities-grid">
-          {capabilities.map((cap) => (
-            <div key={cap.num} className={`cap-card${cap.wide ? " cap-card-wide" : ""}`}>
-              <div className="cap-num">{cap.num}</div>
-              <div className="cap-icon">{cap.icon}</div>
-              <div className="cap-card-body">
-                <div className="cap-title">{cap.title}</div>
-                <p className="cap-desc">{cap.desc}</p>
-                <Link href={cap.href} className="cap-link">
-                  {cap.wide ? "Explore PEMB Solutions" : "Learn more"} <FiArrowRight size={13} />
-                </Link>
-              </div>
+
+      <section className="cap">
+        <div className="cap-mesh" />
+        <div className="cap-glow" />
+        <div className="cap-inner">
+          <motion.div
+            className="cap-header"
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+            <div>
+              <div className="cap-eyebrow">Our Capabilities</div>
+              <h2 className="cap-title">Engineering <span>Precision</span><br />At Every Scale</h2>
             </div>
-          ))}
+            <p className="cap-subtitle">
+              Comprehensive industrial construction services tailored for the modern age.
+            </p>
+          </motion.div>
+
+          <div className="cap-grid">
+            {capabilities.map((cap, i) => (
+              <motion.div
+                key={cap.num}
+                className="cap-card"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.6, delay: (i % 2) * 0.1 }}
+              >
+                <div className="cap-num">{cap.num}</div>
+                <div className="cap-icon-wrap">{cap.icon}</div>
+                <div className="cap-card-body">
+                  <div className="cap-card-title">{cap.title}</div>
+                  <p className="cap-card-desc">{cap.desc}</p>
+                  <Link href={cap.href} className="cap-card-link">
+                    Learn more <FiArrowUpRight size={14} />
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            className="cap-cta"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <Link href="/services" className="cap-cta-btn">
+              View All Services <FiArrowUpRight size={15} />
+            </Link>
+          </motion.div>
         </div>
       </section>
     </>
   );
 }
+
+

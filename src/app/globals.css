@@ -23,12 +23,22 @@
 
 html {
   scroll-behavior: smooth;
+  font-feature-settings: 'kern' 1, 'liga' 1;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
 }
 
 body {

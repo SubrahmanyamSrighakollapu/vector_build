@@ -1,23 +1,29 @@
+"use client";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { FiCheckCircle, FiZap, FiDollarSign, FiShield, FiArrowRight } from "react-icons/fi";
+import { motion } from "framer-motion";
+import { FiCheckCircle, FiFileText, FiBox, FiTool, FiArrowRight } from "react-icons/fi";
 
 const benefits = [
-  { icon: <FiZap size={18}/>,        title: "Rapid Construction",    desc: "Simultaneous site preparation and panel casting compress schedules by up to 50%, getting your facility operational faster." },
-  { icon: <FiDollarSign size={18}/>, title: "Cost Efficiency",       desc: "Reduced material transportation costs and lower skilled labor requirements compared to traditional steel framing significantly lower overall budget." },
-  { icon: <FiShield size={18}/>,     title: "Enhanced Durability",   desc: "Reinforced concrete panels provide superior fire resistance, thermal mass, and security against severe weather conditions." },
+  { icon: <FiFileText size={18}/>,        title: "Shop Drawings",    desc: "Accurate, detailed panel documentation for every project phase." },
+  { icon: <FiBox size={18}/>, title: "3D Modeling",       desc: "Advanced structural 3D models for visualization and coordination." },
+  { icon: <FiTool size={18}/>,     title: "Engineering Support",   desc: "Expert guidance from experienced structural engineering professionals." },
+  { icon: <FiCheckCircle size={18}/>,     title: "Quality Assurance",   desc: "Error-managed QA/QC processes ensuring zero-defect deliverables." },
 ];
 
 const process = [
-  { num: "01", title: "Form & Pour",  desc: "Panels are formed directly on the floor slab, minimizing transport logistics." },
-  { num: "02", title: "Cure & Prep", desc: "Concrete cures rapidly while lifting hardware and embeds are installed." },
-  { num: "03", title: "Lift & Set",  desc: "Cranes lift panels into vertical position, creating the building shell in days." },
+  { num: "01", title: "Document Review",  desc: "Review project documents and requirements." },
+  { num: "02", title: "Panel Layout", desc: "Create optimized panel layouts." },
+  { num: "03", title: "Shop Drawing Preparation",  desc: "Prepare accurate shop drawings." },
+  { num: "04", title: "Quality Check",  desc: "Verify accuracy and compliance." },
+  { num: "05", title: "Client Review",  desc: "Submit drawings and address feedback." },
 ];
 
 const stats = [
-  { num: "2M+",  label: "Sq ft delivered" },
+  { num: "350M+",  label: "Sq ft delivered" },
   { num: "30%",  label: "Faster Build Time" },
-  { num: "50+",  label: "Large scale projects" },
+  { num: "500+",  label: "Large scale projects" },
   { num: "100%", label: "Safety record" },
 ];
 
@@ -32,82 +38,62 @@ const deliverables = [
   "Clash-free, fabrication-ready deliverables",
 ];
 
+const overviewImages = [
+  "/Tilt-up-service-image1.jpeg",
+  "/Tilt-up-service-image2.jpeg",
+  "/Tilt-up-service-image3.jpeg",
+  "/Tilt-up-service-image4.jpeg",
+  "/Tilt-up-service-image5.jpeg",
+];
+
 export default function TiltUpServiceDetailed() {
+  const [activeImage, setActiveImage] = useState(0);
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setActiveImage((current) => (current + 1) % overviewImages.length);
+    }, 3200);
+
+    return () => window.clearInterval(intervalId);
+  }, []);
+
   return (
     <>
       <style>{`
         .tilt-page { background: #ffffff; }
-
-        /* ── Hero ── */
         .tilt-hero {
-          background: #f9f8ff;
-          padding: 72px 48px 64px;
-          text-align: center;
-          border-bottom: 1px solid #ede9ff;
+          background: #0a0618; padding: 96px 80px 80px;
+          text-align: center; position: relative; overflow: hidden;
         }
-        .tilt-hero-eyebrow {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          font-size: 0.72rem;
-          font-weight: 700;
-          letter-spacing: 2px;
-          text-transform: uppercase;
-          color: #ab8cf5;
-          margin-bottom: 16px;
-        }
-        .tilt-hero-eyebrow::before, .tilt-hero-eyebrow::after {
-          content: ''; width: 24px; height: 1.5px;
-          background: #ab8cf5; border-radius: 2px;
-        }
-        .tilt-hero-title {
-          font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-          font-weight: 900;
-          color: #0f0824;
-          letter-spacing: -0.8px;
-          text-transform: uppercase;
-          margin-bottom: 14px;
-        }
-        .tilt-hero-desc {
-          font-size: 1rem;
-          color: #6b6b80;
-          max-width: 520px;
-          margin: 0 auto 28px;
-          line-height: 1.75;
-        }
-        .tilt-hero-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          background: #281750;
-          color: #ffffff;
-          font-size: 0.88rem;
-          font-weight: 700;
-          padding: 12px 28px;
-          border-radius: 10px;
-          transition: all 0.22s ease;
-        }
-        .tilt-hero-btn:hover {
-          background: #ab8cf5;
-          color: #281750;
-          transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(171,140,245,0.35);
-        }
+        .tilt-hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(171,140,245,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(171,140,245,0.05) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; }
+        .tilt-hero::after { content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 600px; height: 400px; background: radial-gradient(ellipse, rgba(171,140,245,0.12) 0%, transparent 70%); pointer-events: none; }
+        .tilt-hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #ab8cf5; margin-bottom: 20px; position: relative; z-index: 1; }
+        .tilt-hero-eyebrow::before, .tilt-hero-eyebrow::after { content: ''; width: 24px; height: 1.5px; background: #ab8cf5; border-radius: 2px; }
+        .tilt-hero-title { font-size: clamp(2rem,4vw,3.5rem); font-weight: 900; color: #fff; letter-spacing: -1.5px; line-height: 1.05; margin-bottom: 20px; position: relative; z-index: 1; }
+        .tilt-hero-desc { font-size: 1.05rem; color: rgba(216,202,250,0.6); max-width: 520px; margin: 0 auto 36px; line-height: 1.8; position: relative; z-index: 1; }
+        .tilt-hero-btn { display: inline-flex; align-items: center; gap: 8px; background: #ab8cf5; color: #0a0618; font-size: 0.9rem; font-weight: 700; padding: 13px 28px; border-radius: 10px; transition: all 0.25s ease; position: relative; z-index: 1; }
+        .tilt-hero-btn:hover { background: #d8cafa; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(171,140,245,0.4); }
 
         /* ── Overview ── */
         .tilt-overview {
+          background: #ffffff;
           padding: 80px 48px;
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 64px;
           align-items: center;
+          position: relative;
+          z-index: 1;
         }
         .tilt-overview-img {
           position: relative;
+          width: min(100%, 700px);
+          margin: 0 auto;
           border-radius: 16px;
           overflow: hidden;
-          aspect-ratio: 4/3;
+          aspect-ratio: 16/11;
           box-shadow: 0 20px 60px rgba(40,23,80,0.12);
+          background: #ece6fb;
         }
         .tilt-overview-img::before {
           content: '';
@@ -117,6 +103,53 @@ export default function TiltUpServiceDetailed() {
           border-radius: 18px;
           z-index: 0;
           pointer-events: none;
+        }
+        .tilt-overview-slide {
+          position: absolute;
+          inset: 14px;
+          z-index: 1;
+          border-radius: 12px;
+          overflow: hidden;
+          background: linear-gradient(180deg, #faf8ff 0%, #f2edff 100%);
+        }
+        .tilt-overview-overlay {
+          position: absolute;
+          inset: 14px;
+          z-index: 2;
+          border-radius: 12px;
+          background: linear-gradient(180deg, rgba(10,6,24,0.04) 0%, rgba(10,6,24,0.01) 45%, rgba(10,6,24,0.18) 100%);
+          pointer-events: none;
+        }
+        .tilt-overview-dots {
+          position: absolute;
+          left: 50%;
+          bottom: 18px;
+          transform: translateX(-50%);
+          z-index: 3;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 8px 10px;
+          border-radius: 999px;
+          background: rgba(10,6,24,0.45);
+          border: 1px solid rgba(255,255,255,0.12);
+          backdrop-filter: blur(10px);
+        }
+        .tilt-overview-dot {
+          width: 9px;
+          height: 9px;
+          border-radius: 50%;
+          border: none;
+          padding: 0;
+          background: rgba(255,255,255,0.34);
+          cursor: pointer;
+          transition: all 0.25s ease;
+        }
+        .tilt-overview-dot.active {
+          width: 24px;
+          border-radius: 999px;
+          background: #ab8cf5;
+          box-shadow: 0 0 16px rgba(171,140,245,0.45);
         }
         .tilt-overview-text {
           font-size: 0.95rem;
@@ -159,9 +192,11 @@ export default function TiltUpServiceDetailed() {
 
         /* ── Process ── */
         .tilt-process {
-          background: #f9f8ff;
+          background: linear-gradient(180deg, #f8f5ff 0%, #f3efff 100%);
           padding: 72px 48px;
           text-align: center;
+          border-top: 1px solid #efe9ff;
+          border-bottom: 1px solid #ece4ff;
         }
         .tilt-section-title {
           font-size: clamp(1.4rem, 2.5vw, 1.9rem);
@@ -176,7 +211,7 @@ export default function TiltUpServiceDetailed() {
         }
         .tilt-process-steps {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(5, 1fr);
           gap: 0;
           position: relative;
         }
@@ -184,8 +219,8 @@ export default function TiltUpServiceDetailed() {
           content: '';
           position: absolute;
           top: 28px;
-          left: calc(16.66% + 20px);
-          right: calc(16.66% + 20px);
+          left: calc(10% + 20px);
+          right: calc(10% + 20px);
           height: 2px;
           background: linear-gradient(90deg, #ab8cf5, #d8cafa, #ab8cf5);
           z-index: 0;
@@ -222,7 +257,7 @@ export default function TiltUpServiceDetailed() {
 
         /* ── Stats ── */
         .tilt-stats {
-          background: #281750;
+          background: linear-gradient(180deg, #281750 0%, #1a0f37 100%);
           padding: 56px 48px;
           display: grid;
           grid-template-columns: repeat(4, 1fr);
@@ -250,11 +285,14 @@ export default function TiltUpServiceDetailed() {
 
         /* ── What We Provide ── */
         .tilt-provide {
+          background: #ffffff;
           padding: 80px 48px;
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 64px;
           align-items: start;
+          position: relative;
+          z-index: 1;
         }
         .tilt-provide-label {
           display: flex;
@@ -302,7 +340,7 @@ export default function TiltUpServiceDetailed() {
           position: relative;
           border-radius: 16px;
           overflow: hidden;
-          aspect-ratio: 4/3;
+          aspect-ratio: 6/4;
           box-shadow: 0 16px 48px rgba(40,23,80,0.1);
         }
 
@@ -324,9 +362,9 @@ export default function TiltUpServiceDetailed() {
         {/* Hero */}
         <div className="tilt-hero">
           <div className="tilt-hero-eyebrow">Tilt-Up Construction</div>
-          <h1 className="tilt-hero-title">Tilt-Up Construction Specialists</h1>
+          <h1 className="tilt-hero-title">Build Right Tech CONSTRUCTION SPECIALISTS</h1>
           <p className="tilt-hero-desc">
-            Vector Build delivers industrial-scale tilt-up solutions that compress construction
+            Build Right Tech delivers industrial-scale tilt-up solutions that compress construction
             schedules and maximize structural integrity.
           </p>
           <Link href="/projects" className="tilt-hero-btn">
@@ -337,7 +375,33 @@ export default function TiltUpServiceDetailed() {
         {/* Overview */}
         <div className="tilt-overview">
           <div className="tilt-overview-img">
-            <Image src="/tilt_image1.png" alt="Tilt-Up Construction" fill style={{ objectFit: "cover" }} sizes="50vw" />
+            <motion.div
+              key={overviewImages[activeImage]}
+              className="tilt-overview-slide"
+              initial={{ opacity: 0, scale: 1.04 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+            >
+              <Image
+                src={overviewImages[activeImage]}
+                alt={`Tilt-Up Construction ${activeImage + 1}`}
+                fill
+                style={{ objectFit: "contain", objectPosition: "center" }}
+                sizes="50vw"
+              />
+            </motion.div>
+            <div className="tilt-overview-overlay" />
+            <div className="tilt-overview-dots">
+              {overviewImages.map((image, index) => (
+                <button
+                  key={image}
+                  type="button"
+                  className={`tilt-overview-dot${activeImage === index ? " active" : ""}`}
+                  onClick={() => setActiveImage(index)}
+                  aria-label={`Show tilt-up image ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
           <div>
             <p className="tilt-overview-text">

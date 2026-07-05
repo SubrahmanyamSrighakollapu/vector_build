@@ -1,142 +1,227 @@
+"use client";
 import Image from "next/image";
-import { FiUser } from "react-icons/fi";
+import { motion } from "framer-motion";
 
 export default function FutureOfIndustry() {
   return (
     <>
       <style>{`
         .foi {
-          padding: 96px 48px;
+          padding: 120px 80px;
           background: #ffffff;
-        }
-        .foi-inner {
-          display: grid;
-          grid-template-columns: 1fr 1.4fr;
-          gap: 72px;
-          align-items: center;
-        }
-        .foi-image-wrap {
           position: relative;
-        }
-        .foi-image-frame {
-          position: relative;
-          border-radius: 12px;
           overflow: hidden;
-          aspect-ratio: 4/3;
-          box-shadow: 0 16px 48px rgba(40,23,80,0.12);
         }
-        .foi-image-frame::before {
+        .foi::before {
           content: '';
           position: absolute;
-          top: -10px;
-          left: -10px;
-          right: 10px;
-          bottom: 10px;
-          border: 2px solid #ab8cf5;
-          border-radius: 14px;
-          z-index: 0;
+          inset: 0;
+          background:
+            radial-gradient(circle at top right, rgba(171,140,245,0.08), transparent 30%),
+            linear-gradient(180deg, rgba(171,140,245,0.02), transparent 22%);
           pointer-events: none;
         }
-        .foi-image-frame img {
+        .foi-inner {
+          max-width: 1240px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: minmax(320px, 0.95fr) minmax(0, 1.15fr);
+          gap: 64px;
+          align-items: center;
           position: relative;
           z-index: 1;
         }
-        .foi-content-title {
-          font-size: clamp(1.4rem, 2.5vw, 1.9rem);
-          font-weight: 800;
-          color: #0f0824;
-          margin-bottom: 6px;
-          line-height: 1.2;
+
+        .foi-media {
+          position: relative;
         }
-        .foi-title-underline {
-          width: 48px;
-          height: 3px;
-          background: #ab8cf5;
-          border-radius: 2px;
-          margin-bottom: 24px;
+        .foi-media-frame {
+          position: relative;
+          border-radius: 28px;
+          overflow: hidden;
+          aspect-ratio: 4 / 4.6;
+          background: #f7f4ff;
+          border: 1px solid rgba(171,140,245,0.12);
+          box-shadow: 0 28px 80px rgba(40,23,80,0.12);
         }
-        .foi-text {
-          font-size: 0.95rem;
-          color: #525252;
-          line-height: 1.8;
-          margin-bottom: 16px;
+        .foi-media-frame::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, transparent 45%, rgba(10,6,24,0.12) 100%);
+          pointer-events: none;
         }
-        .foi-divider {
-          border: none;
-          border-top: 1px solid #e5e5e5;
-          margin: 28px 0;
+        .foi-media-outline {
+          position: absolute;
+          inset: -16px 18px 18px -16px;
+          border-radius: 34px;
+          border: 1px solid rgba(171,140,245,0.18);
+          pointer-events: none;
         }
-        .foi-ceo {
+        .foi-media-badge {
+          position: absolute;
+          left: 24px;
+          bottom: 24px;
           display: flex;
           align-items: center;
-          gap: 14px;
+          gap: 10px;
+          padding: 14px 16px;
+          border-radius: 18px;
+          background: rgba(10,6,24,0.82);
+          color: #ffffff;
+          border: 1px solid rgba(171,140,245,0.2);
+          backdrop-filter: blur(12px);
+          box-shadow: 0 18px 34px rgba(10,6,24,0.18);
         }
-        .foi-ceo-avatar {
-          width: 44px;
-          height: 44px;
-          border-radius: 50%;
-          background: linear-gradient(135deg, #ab8cf5, #281750);
+        .foi-media-badge-mark {
+          width: 38px;
+          height: 38px;
+          border-radius: 12px;
           display: flex;
           align-items: center;
           justify-content: center;
-          color: #fff;
-          flex-shrink: 0;
-          font-size: 1.1rem;
-        }
-        .foi-ceo-name {
+          background: linear-gradient(135deg, #ab8cf5, #281750);
+          color: #ffffff;
           font-size: 0.95rem;
+          font-weight: 800;
+          flex-shrink: 0;
+        }
+        .foi-media-badge-copy {
+          display: flex;
+          flex-direction: column;
+          gap: 3px;
+        }
+        .foi-media-badge-label {
+          font-size: 0.68rem;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: rgba(216,202,250,0.66);
           font-weight: 700;
-          color: #0f0824;
         }
-        .foi-ceo-role {
-          font-size: 0.8rem;
-          color: #a3a3a3;
-          margin-top: 2px;
+        .foi-media-badge-title {
+          font-size: 0.9rem;
+          font-weight: 700;
+          line-height: 1.2;
         }
-        @media (max-width: 900px) {
-          .foi { padding: 64px 20px; }
-          .foi-inner { grid-template-columns: 1fr; gap: 40px; }
+
+        .foi-content {
+          min-width: 0;
+        }
+        .foi-eyebrow {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 0.72rem;
+          font-weight: 700;
+          letter-spacing: 2.5px;
+          text-transform: uppercase;
+          color: #ab8cf5;
+          margin-bottom: 18px;
+        }
+        .foi-eyebrow::before {
+          content: '';
+          width: 28px;
+          height: 2px;
+          background: #ab8cf5;
+          border-radius: 2px;
+        }
+        .foi-title {
+          font-size: clamp(2rem, 3vw, 3rem);
+          font-weight: 900;
+          color: #0a0618;
+          margin-bottom: 18px;
+          line-height: 1.05;
+          letter-spacing: -1.3px;
+        }
+        .foi-title span {
+          color: #281750;
+        }
+        .foi-lead {
+          font-size: 1.02rem;
+          color: #3f3f4e;
+          line-height: 1.9;
+          max-width: 720px;
+          margin-bottom: 18px;
+        }
+
+        @media (max-width: 1100px) {
+          .foi {
+            padding: 88px 48px;
+          }
+          .foi-inner {
+            gap: 44px;
+            grid-template-columns: 1fr;
+          }
+          .foi-media-frame {
+            aspect-ratio: 16 / 10;
+          }
+        }
+        @media (max-width: 720px) {
+          .foi {
+            padding: 72px 24px;
+          }
+          .foi-media-outline {
+            inset: -10px 12px 12px -10px;
+          }
         }
       `}</style>
+
       <section className="foi">
         <div className="foi-inner">
-          <div className="foi-image-wrap">
-            <div className="foi-image-frame">
+          <motion.div
+            className="foi-media"
+            initial={{ opacity: 0, x: -42 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            <div className="foi-media-outline" />
+            <div className="foi-media-frame">
               <Image
                 src="/future-of-industry.png"
                 alt="Building the Future of Industry"
                 fill
                 style={{ objectFit: "cover" }}
-                sizes="(max-width: 900px) 100vw, 40vw"
+                sizes="(max-width: 1100px) 100vw, 40vw"
               />
             </div>
-          </div>
-          <div>
-            <h2 className="foi-content-title">Building the Future of Industry</h2>
-            <div className="foi-title-underline" />
-            <p className="foi-text">
-              Founded on the principles of precision engineering and unwavering reliability,
-              Vector Build has evolved from a local contractor into a national leader in
-              industrial construction. We don&apos;t just pour concrete and erect steel; we
-              architect the environments where innovation happens.
-            </p>
-            <p className="foi-text">
-              Our teams specialize in complex, high-stakes environments — from automated
-              logistics centers to advanced manufacturing plants. We leverage cutting-edge
-              technology and time-tested methodologies to deliver projects that stand the
-              test of time and scale.
-            </p>
-            <hr className="foi-divider" />
-            <div className="foi-ceo">
-              <div className="foi-ceo-avatar">
-                <FiUser />
-              </div>
-              <div>
-                <div className="foi-ceo-name">James Sterling</div>
-                <div className="foi-ceo-role">CEO &amp; Founder</div>
+            <div className="foi-media-badge">
+              <div className="foi-media-badge-mark">BR</div>
+              <div className="foi-media-badge-copy">
+                <span className="foi-media-badge-label">Our Story</span>
+                <span className="foi-media-badge-title">Built around precision and dependable delivery</span>
               </div>
             </div>
-          </div>
+          </motion.div>
+
+          <motion.div
+            className="foi-content"
+            initial={{ opacity: 0, x: 42 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            <div className="foi-eyebrow">Our Story</div>
+            <h2 className="foi-title">
+              Building the <span>Future</span><br />of Industry
+            </h2>
+            <p className="foi-lead">
+              BuildRight Technologies is an engineering company specializing in technology-driven
+              structural detailing and digital construction solutions. We deliver end-to-end services
+              in BIM, precast concrete detailing, and Self storage detailing, PEMB Design and
+              Detailing Services focusing on precision, seamless coordination, and project efficiency.
+            </p>
+            <p className="foi-lead">
+              Our team of experienced engineers and project specialists collaborates closely to
+              provide high-quality solutions that meet international standards and exceed client
+              expectations.
+            </p>
+            <p className="foi-lead" style={{ marginBottom: 0 }}>
+              Whether partnering on a single project or acting as an extension of your engineering
+              team, we are dedicated to delivering reliable, scalable, and cost-effective solutions
+              that drive project success.
+            </p>
+          </motion.div>
         </div>
       </section>
     </>

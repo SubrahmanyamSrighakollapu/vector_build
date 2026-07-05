@@ -1,5 +1,7 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { FiCheckCircle, FiArrowRight } from "react-icons/fi";
 
 const scope = [
@@ -63,26 +65,27 @@ export default function ReberServiceDetailed() {
   return (
     <>
       <style>{`
-        .rb { background: #ffffff; }
+        .rb { background: #0a0618; }
         .rb-hero {
-          background: #f9f8ff; padding: 72px 48px 64px;
-          text-align: center; border-bottom: 1px solid #ede9ff;
+          background: #0a0618; padding: 96px 80px 80px;
+          text-align: center; position: relative; overflow: hidden;
         }
+        .rb-hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(171,140,245,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(171,140,245,0.05) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; }
+        .rb-hero::after { content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 600px; height: 400px; background: radial-gradient(ellipse, rgba(171,140,245,0.12) 0%, transparent 70%); pointer-events: none; }
         .rb-eyebrow {
           display: inline-flex; align-items: center; gap: 8px;
           font-size: 0.72rem; font-weight: 700; letter-spacing: 2px;
           text-transform: uppercase; color: #ab8cf5; margin-bottom: 16px;
         }
         .rb-eyebrow::before, .rb-eyebrow::after { content: ''; width: 24px; height: 1.5px; background: #ab8cf5; border-radius: 2px; }
-        .rb-hero-title { font-size: clamp(1.8rem,3.5vw,2.6rem); font-weight: 900; color: #0f0824; letter-spacing: -0.5px; margin-bottom: 14px; }
-        .rb-hero-desc { font-size: 1rem; color: #6b6b80; max-width: 540px; margin: 0 auto 28px; line-height: 1.75; }
-        .rb-hero-btn {
-          display: inline-flex; align-items: center; gap: 8px;
-          background: #281750; color: #fff; font-size: 0.88rem;
-          font-weight: 700; padding: 12px 28px; border-radius: 10px; transition: all 0.22s ease;
-        }
-        .rb-hero-btn:hover { background: #ab8cf5; color: #281750; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(171,140,245,0.35); }
+        .rb-hero-title { font-size: clamp(2rem,4vw,3.5rem); font-weight: 900; color: #fff; letter-spacing: -1.5px; line-height: 1.05; margin-bottom: 20px; }
+        .rb-hero-desc { font-size: 1.05rem; color: rgba(216,202,250,0.6); max-width: 540px; margin: 0 auto 36px; line-height: 1.8; }
+        .rb-hero-btn { display: inline-flex; align-items: center; gap: 8px; background: #ab8cf5; color: #0a0618; font-size: 0.9rem; font-weight: 700; padding: 13px 28px; border-radius: 10px; transition: all 0.25s ease; position: relative; z-index: 1; }
+        .rb-hero-btn:hover { background: #d8cafa; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(171,140,245,0.4); }
 
+        .rb-hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #ab8cf5; margin-bottom: 20px; position: relative; z-index: 1; }
+        .rb-hero-eyebrow::before, .rb-hero-eyebrow::after { content: ''; width: 24px; height: 1.5px; background: #ab8cf5; border-radius: 2px; }
+        .rb-hero-title, .rb-hero-desc, .rb-hero-btn { position: relative; z-index: 1; }
         /* badges bar */
         .rb-badges {
           background: #281750; padding: 16px 48px;
@@ -185,8 +188,8 @@ export default function ReberServiceDetailed() {
 
       <div className="rb">
         <div className="rb-hero">
-          <div className="rb-eyebrow">Rebar Detailing</div>
-          <h1 className="rb-hero-title">Rebar Detailing & Reinforcement Service</h1>
+          <div className="rb-hero-eyebrow">Rebar Detailing</div>
+          <h1 className="rb-hero-title">Rebar Detailing &amp; Reinforcement Service</h1>
           <p className="rb-hero-desc">
             High-precision structural detailing for complex concrete projects. We deliver
             accurate shop drawings, Bar Bending Schedules (BBS), and placement drawings

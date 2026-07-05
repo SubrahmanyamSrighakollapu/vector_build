@@ -1,5 +1,7 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { FiArrowRight, FiZap, FiDollarSign, FiSliders, FiSun } from "react-icons/fi";
 
 const stats = [
@@ -35,25 +37,16 @@ export default function PembServiceDetailed() {
   return (
     <>
       <style>{`
-        .pemb { background: #ffffff; }
-        .pemb-hero {
-          background: #f9f8ff; padding: 72px 48px 64px;
-          text-align: center; border-bottom: 1px solid #ede9ff;
-        }
-        .pemb-eyebrow {
-          display: inline-flex; align-items: center; gap: 8px;
-          font-size: 0.72rem; font-weight: 700; letter-spacing: 2px;
-          text-transform: uppercase; color: #ab8cf5; margin-bottom: 16px;
-        }
+        .pemb { background: #0a0618; }
+        .pemb-hero { background: #0a0618; padding: 96px 80px 80px; text-align: center; position: relative; overflow: hidden; }
+        .pemb-hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(171,140,245,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(171,140,245,0.05) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; }
+        .pemb-hero::after { content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 600px; height: 400px; background: radial-gradient(ellipse, rgba(171,140,245,0.12) 0%, transparent 70%); pointer-events: none; }
+        .pemb-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #ab8cf5; margin-bottom: 20px; position: relative; z-index: 1; }
         .pemb-eyebrow::before, .pemb-eyebrow::after { content: ''; width: 24px; height: 1.5px; background: #ab8cf5; border-radius: 2px; }
-        .pemb-hero-title { font-size: clamp(1.8rem,3.5vw,2.6rem); font-weight: 900; color: #0f0824; letter-spacing: -0.5px; margin-bottom: 14px; }
-        .pemb-hero-desc { font-size: 1rem; color: #6b6b80; max-width: 540px; margin: 0 auto 28px; line-height: 1.75; }
-        .pemb-hero-btn {
-          display: inline-flex; align-items: center; gap: 8px;
-          background: #281750; color: #fff; font-size: 0.88rem;
-          font-weight: 700; padding: 12px 28px; border-radius: 10px; transition: all 0.22s ease;
-        }
-        .pemb-hero-btn:hover { background: #ab8cf5; color: #281750; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(171,140,245,0.35); }
+        .pemb-hero-title { font-size: clamp(2rem,4vw,3.5rem); font-weight: 900; color: #fff; letter-spacing: -1.5px; line-height: 1.05; margin-bottom: 20px; position: relative; z-index: 1; }
+        .pemb-hero-desc { font-size: 1.05rem; color: rgba(216,202,250,0.6); max-width: 540px; margin: 0 auto 36px; line-height: 1.8; position: relative; z-index: 1; }
+        .pemb-hero-btn { display: inline-flex; align-items: center; gap: 8px; background: #ab8cf5; color: #0a0618; font-size: 0.9rem; font-weight: 700; padding: 13px 28px; border-radius: 10px; transition: all 0.25s ease; position: relative; z-index: 1; }
+        .pemb-hero-btn:hover { background: #d8cafa; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(171,140,245,0.4); }
 
         /* stats */
         .pemb-stats {

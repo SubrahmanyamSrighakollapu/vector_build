@@ -1,8 +1,9 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
-import { FiLinkedin, FiTwitter, FiFacebook, FiInstagram, FiArrowRight, FiCheckCircle } from "react-icons/fi";
+import { motion } from "framer-motion";
+import { FiLinkedin, FiTwitter, FiFacebook, FiInstagram, FiMapPin, FiPhone, FiMail } from "react-icons/fi";
+import { companyContact, globalOffices } from "@/lib/contact";
 
 const footerLinks = {
   Company: [
@@ -22,174 +23,219 @@ const footerLinks = {
 };
 
 export default function Footer() {
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-
-  function handleSubscribe(e: React.FormEvent) {
-    e.preventDefault();
-    if (email) setSubscribed(true);
-  }
-
   return (
     <>
       <style>{`
         .footer {
-          background: #0f0824;
+          background: #060412;
           color: #d8cafa;
-          padding: 64px 48px 0;
-          margin-top: auto;
-          border-top: 1px solid rgba(171,140,245,0.15);
+          border-top: 1px solid rgba(171,140,245,0.12);
+        }
+        .footer-inner {
+          padding: 72px 80px 0;
+          max-width: 1400px;
+          margin: 0 auto;
         }
         .footer-grid {
           display: grid;
-          grid-template-columns: 1.8fr 1fr 1fr 1.6fr;
-          gap: 48px;
-          padding-bottom: 48px;
-          border-bottom: 1px solid rgba(171,140,245,0.15);
+          grid-template-columns: 1.45fr 0.9fr 0.9fr 2.75fr;
+          gap: 56px;
+          padding-bottom: 56px;
+          border-bottom: 1px solid rgba(171,140,245,0.1);
         }
 
-        /* Col 1 — Brand */
-        .footer-brand-logo {
-          display: flex;
-          align-items: center;
-          margin-bottom: 16px;
-        }
-        .footer-brand-logo img {
-          height: 38px;
-          width: auto;
-          object-fit: contain;
-        }
+        /* Brand col */
+        .footer-logo-wrap { margin-bottom: 20px; }
         .footer-tagline {
-          font-size: 0.88rem;
-          line-height: 1.75;
-          color: #a89cc8;
+          font-size: 0.875rem;
+          line-height: 1.8;
+          color: rgba(216,202,250,0.5);
           max-width: 260px;
-          margin-bottom: 28px;
+          margin-bottom: 24px;
         }
-        .footer-socials { display: flex; gap: 10px; }
-        .social-link {
-          width: 36px; height: 36px;
-          border-radius: 8px;
-          background: rgba(171,140,245,0.1);
-          border: 1px solid rgba(171,140,245,0.2);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: #ab8cf5;
-          transition: all 0.2s ease;
-        }
-        .social-link:hover {
-          background: #ab8cf5;
-          color: #281750;
-          transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(171,140,245,0.35);
-        }
-
-        /* Cols 2 & 3 — Links */
-        .footer-col-title {
-          font-size: 0.75rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 1.5px;
-          color: #ab8cf5;
-          margin-bottom: 20px;
-        }
-        .footer-col-links {
+        .footer-contact-list {
           display: flex;
           flex-direction: column;
           gap: 10px;
+          margin-bottom: 28px;
         }
-        .footer-col-link {
-          font-size: 0.88rem;
-          color: #a89cc8;
-          transition: color 0.2s ease, padding-left 0.2s ease;
+        .footer-contact-item {
           display: flex;
           align-items: center;
-          gap: 6px;
+          gap: 10px;
+          font-size: 0.82rem;
+          color: rgba(216,202,250,0.5);
+          transition: color 0.2s ease;
+        }
+        .footer-contact-item:hover { color: rgba(216,202,250,0.85); }
+        .footer-contact-item svg { color: #ab8cf5; flex-shrink: 0; }
+        .footer-socials { display: flex; gap: 10px; }
+        .footer-social {
+          width: 36px; height: 36px;
+          border-radius: 8px;
+          background: rgba(171,140,245,0.08);
+          border: 1px solid rgba(171,140,245,0.15);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: rgba(171,140,245,0.7);
+          transition: all 0.2s ease;
+        }
+        .footer-social:hover {
+          background: #ab8cf5;
+          color: #0a0618;
+          border-color: #ab8cf5;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(171,140,245,0.35);
+        }
+
+        /* Link cols */
+        .footer-col-title {
+          font-size: 0.7rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          color: #ab8cf5;
+          margin-bottom: 20px;
+        }
+        .footer-col-links { display: flex; flex-direction: column; gap: 10px; }
+        .footer-col-link {
+          font-size: 0.875rem;
+          color: rgba(216,202,250,0.5);
+          transition: color 0.2s ease, padding-left 0.2s ease;
         }
         .footer-col-link:hover {
           color: #ffffff;
-          padding-left: 4px;
+          padding-left: 6px;
         }
 
-        /* Col 4 — Newsletter */
-        .footer-nl-title {
-          font-size: 0.75rem;
+        /* Global offices */
+        .footer-offices-col {
+          min-width: 0;
+        }
+        .footer-offices-title {
+          font-size: 0.7rem;
           font-weight: 700;
           text-transform: uppercase;
-          letter-spacing: 1.5px;
+          letter-spacing: 2px;
           color: #ab8cf5;
-          margin-bottom: 12px;
-        }
-        .footer-nl-desc {
-          font-size: 0.85rem;
-          color: #a89cc8;
-          line-height: 1.7;
           margin-bottom: 20px;
         }
-        .footer-nl-form {
+        .footer-offices-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(260px, 1fr));
+          gap: 30px 42px;
+        }
+        .footer-office {
+          min-width: 0;
+        }
+        .footer-office-head {
           display: flex;
-          flex-direction: column;
+          align-items: center;
           gap: 10px;
+          margin-bottom: 14px;
         }
-        .footer-nl-input {
-          width: 100%;
-          padding: 11px 14px;
-          background: rgba(255,255,255,0.06);
-          border: 1.5px solid rgba(171,140,245,0.2);
-          border-radius: 10px;
-          color: #fff;
-          font-size: 0.85rem;
-          font-family: inherit;
-          outline: none;
-          transition: border-color 0.2s ease, background 0.2s ease;
-        }
-        .footer-nl-input::placeholder { color: #6b5f8a; }
-        .footer-nl-input:focus {
-          border-color: #ab8cf5;
-          background: rgba(171,140,245,0.08);
-        }
-        .footer-nl-btn {
-          width: 100%;
-          padding: 11px 16px;
-          background: #ab8cf5;
-          color: #281750;
-          font-size: 0.85rem;
-          font-weight: 700;
-          border: none;
-          border-radius: 10px;
-          cursor: pointer;
-          display: flex;
+        .footer-office-flag {
+          position: relative;
+          width: 16px;
+          height: 16px;
+          border-radius: 999px;
+          display: inline-flex;
           align-items: center;
           justify-content: center;
-          gap: 7px;
-          transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+          overflow: hidden;
+          border: 1px solid rgba(255,255,255,0.18);
+          box-shadow: 0 4px 10px rgba(40,23,80,0.18);
+          flex-shrink: 0;
         }
-        .footer-nl-btn:hover {
-          background: #d8cafa;
-          transform: translateY(-1px);
-          box-shadow: 0 6px 20px rgba(171,140,245,0.3);
+        .footer-office-flag.flag-india {
+          background: linear-gradient(to bottom, #ff9933 0 33.33%, #ffffff 33.33% 66.66%, #138808 66.66% 100%);
         }
-        .footer-nl-success {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          background: rgba(171,140,245,0.1);
-          border: 1px solid rgba(171,140,245,0.25);
-          border-radius: 10px;
-          padding: 12px 14px;
-          color: #d8cafa;
-          font-size: 0.83rem;
-          font-weight: 500;
+        .footer-office-flag.flag-india::after {
+          content: "";
+          position: absolute;
+          inset: 5px;
+          border-radius: 50%;
+          border: 1.2px solid #1a4ea1;
         }
-        .footer-nl-privacy {
-          font-size: 0.75rem;
-          color: #4e4468;
-          margin-top: 8px;
-          line-height: 1.5;
+        .footer-office-flag.flag-usa {
+          background:
+            linear-gradient(to bottom,
+              #b22234 0 14.28%, #ffffff 14.28% 28.56%,
+              #b22234 28.56% 42.84%, #ffffff 42.84% 57.12%,
+              #b22234 57.12% 71.4%, #ffffff 71.4% 85.68%,
+              #b22234 85.68% 100%);
         }
-        .footer-nl-privacy a { color: #6b5f8a; text-decoration: underline; }
-        .footer-nl-privacy a:hover { color: #ab8cf5; }
+        .footer-office-flag.flag-usa::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 52%;
+          height: 52%;
+          background: #3c3b6e;
+        }
+        .footer-office-flag.flag-usa::after {
+          content: "";
+          position: absolute;
+          top: 3px;
+          left: 3px;
+          width: 2px;
+          height: 2px;
+          border-radius: 50%;
+          background: rgba(255,255,255,0.9);
+          box-shadow:
+            4px 0 0 rgba(255,255,255,0.9),
+            0 4px 0 rgba(255,255,255,0.9),
+            4px 4px 0 rgba(255,255,255,0.9);
+        }
+        .footer-office-flag.flag-australia {
+          background: #1e3a8a;
+        }
+        .footer-office-flag.flag-australia::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 58%;
+          height: 58%;
+          background:
+            linear-gradient(0deg, transparent 42%, #ffffff 42% 58%, transparent 58%),
+            linear-gradient(90deg, transparent 42%, #ffffff 42% 58%, transparent 58%),
+            linear-gradient(45deg, transparent 44%, #ffffff 44% 56%, transparent 56%),
+            linear-gradient(-45deg, transparent 44%, #ffffff 44% 56%, transparent 56%),
+            linear-gradient(0deg, transparent 46%, #c8102e 46% 54%, transparent 54%),
+            linear-gradient(90deg, transparent 46%, #c8102e 46% 54%, transparent 54%);
+          background-color: #012169;
+        }
+        .footer-office-flag.flag-australia::after {
+          content: "";
+          position: absolute;
+          right: 3px;
+          bottom: 3px;
+          width: 3px;
+          height: 3px;
+          border-radius: 50%;
+          background: #ffffff;
+          box-shadow:
+            -5px -4px 0 0 rgba(255,255,255,0.95),
+            -1px -8px 0 0 rgba(255,255,255,0.95);
+        }
+        .footer-office-city {
+          font-size: 0.9rem;
+          font-weight: 700;
+          color: #f5f2ff;
+          line-height: 1.35;
+        }
+        .footer-office-address {
+          font-size: 0.93rem;
+          line-height: 1.58;
+          color: rgba(216,202,250,0.54);
+          max-width: 360px;
+        }
+        .footer-office-address span {
+          display: block;
+        }
 
         /* Bottom bar */
         .footer-bottom {
@@ -197,114 +243,115 @@ export default function Footer() {
           align-items: center;
           justify-content: space-between;
           padding: 20px 0;
-          font-size: 0.8rem;
-          color: #4e4468;
+          font-size: 0.78rem;
+          color: rgba(171,140,245,0.25);
           flex-wrap: wrap;
           gap: 8px;
         }
-        .footer-bottom a { color: #6b5f8a; transition: color 0.2s; }
+        .footer-bottom a { color: rgba(171,140,245,0.35); transition: color 0.2s; }
         .footer-bottom a:hover { color: #ab8cf5; }
+        .footer-bottom-links { display: flex; gap: 20px; }
 
         @media (max-width: 1100px) {
-          .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
-          .footer-brand { grid-column: 1 / -1; }
-          .footer-nl { grid-column: 1 / -1; }
+          .footer-inner { padding: 56px 48px 0; }
+          .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+          .footer-brand-col { grid-column: 1 / -1; }
+          .footer-offices-col { grid-column: 1 / -1; }
+          .footer-offices-grid { grid-template-columns: repeat(2, minmax(240px, 1fr)); }
         }
-        @media (max-width: 768px) {
-          .footer { padding: 48px 20px 0; }
-          .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
-        }
-        @media (max-width: 480px) {
-          .footer-grid { grid-template-columns: 1fr; }
+        @media (max-width: 640px) {
+          .footer-inner { padding: 48px 24px 0; }
+          .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+          .footer-brand-col, .footer-offices-col { grid-column: auto; }
+          .footer-offices-grid { grid-template-columns: 1fr; gap: 22px; }
+          .footer-offices-title { margin-bottom: 18px; }
+          .footer-office-address { max-width: 100%; }
+          .footer-bottom { flex-direction: column; align-items: flex-start; }
         }
       `}</style>
 
       <footer className="footer">
-        <div className="footer-grid">
-
-          {/* 1 — Brand */}
-          <div className="footer-brand">
-            <div className="footer-brand-logo">
-              <Link href="/">
-                <Image src="/vector-build-logo.jpeg" alt="VectorBuild" width={140} height={38} style={{ height: 38, width: "auto", objectFit: "contain" }} />
-              </Link>
-            </div>
-            <p className="footer-tagline">
-              Engineering excellence through precision precast, structural steel,
-              and innovative construction solutions since 1985.
-            </p>
-            <div className="footer-socials">
-              <a href="#" className="social-link" aria-label="LinkedIn"><FiLinkedin size={15} /></a>
-              <a href="#" className="social-link" aria-label="Twitter"><FiTwitter size={15} /></a>
-              <a href="#" className="social-link" aria-label="Facebook"><FiFacebook size={15} /></a>
-              <a href="#" className="social-link" aria-label="Instagram"><FiInstagram size={15} /></a>
-            </div>
-          </div>
-
-          {/* 2 — Company */}
-          <div>
-            <p className="footer-col-title">Company</p>
-            <div className="footer-col-links">
-              {footerLinks.Company.map((link) => (
-                <Link key={link.label} href={link.href} className="footer-col-link">
-                  {link.label}
+        <div className="footer-inner">
+          <motion.div
+            className="footer-grid"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            {/* Brand */}
+            <div className="footer-brand-col">
+              <div className="footer-logo-wrap">
+                <Link href="/">
+                  <Image src="/buildright-tech-footer.png" alt="Build Right Tech" width={150} height={46} style={{ height: 80, width: "auto", objectFit: "contain" }} />
                 </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* 3 — Services */}
-          <div>
-            <p className="footer-col-title">Services</p>
-            <div className="footer-col-links">
-              {footerLinks.Services.map((link) => (
-                <Link key={link.label} href={link.href} className="footer-col-link">
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* 4 — Newsletter */}
-          <div className="footer-nl">
-            <p className="footer-nl-title">Stay Updated</p>
-            <p className="footer-nl-desc">
-              Get the latest project updates, industry insights, and engineering
-              news delivered straight to your inbox.
-            </p>
-            {subscribed ? (
-              <div className="footer-nl-success">
-                <FiCheckCircle size={18} color="#ab8cf5" />
-                You&apos;re subscribed! Welcome aboard.
               </div>
-            ) : (
-              <form className="footer-nl-form" onSubmit={handleSubscribe}>
-                <input
-                  className="footer-nl-input"
-                  type="email"
-                  placeholder="Enter your email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-                <button type="submit" className="footer-nl-btn">
-                  Subscribe <FiArrowRight size={14} />
-                </button>
-              </form>
-            )}
-            <p className="footer-nl-privacy">
-              No spam, ever. Read our <a href="#">Privacy Policy</a>.
-            </p>
+              <p className="footer-tagline">
+                Engineering excellence through precision precast, structural steel,
+                and innovative construction solutions since 1985.
+              </p>
+              <div className="footer-contact-list">
+                <span className="footer-contact-item"><FiMapPin size={13} />{companyContact.location}</span>
+                <span className="footer-contact-item"><FiPhone size={13} />{companyContact.phoneDisplay}</span>
+                <span className="footer-contact-item"><FiMail size={13} />{companyContact.email}</span>
+              </div>
+              <div className="footer-socials">
+                <a href={companyContact.socials.linkedin} className="footer-social" aria-label="LinkedIn" target="_blank" rel="noreferrer"><FiLinkedin size={15} /></a>
+                <a href="#" className="footer-social" aria-label="Twitter"><FiTwitter size={15} /></a>
+                <a href="#" className="footer-social" aria-label="Facebook"><FiFacebook size={15} /></a>
+                <a href="#" className="footer-social" aria-label="Instagram"><FiInstagram size={15} /></a>
+              </div>
+            </div>
+
+            {/* Company */}
+            <div>
+              <p className="footer-col-title">Company</p>
+              <div className="footer-col-links">
+                {footerLinks.Company.map((l) => (
+                  <Link key={l.label} href={l.href} className="footer-col-link">{l.label}</Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Services */}
+            <div>
+              <p className="footer-col-title">Services</p>
+              <div className="footer-col-links">
+                {footerLinks.Services.map((l) => (
+                  <Link key={l.label} href={l.href} className="footer-col-link">{l.label}</Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Global offices */}
+            <div className="footer-offices-col">
+              <p className="footer-offices-title">Global Offices</p>
+              <div className="footer-offices-grid">
+                {globalOffices.map((office) => (
+                  <div key={office.city} className="footer-office">
+                    <div className="footer-office-head">
+                      <span className={`footer-office-flag flag-${office.country}`} aria-hidden="true" />
+                      <span className="footer-office-city">{office.city}</span>
+                    </div>
+                    <div className="footer-office-address">
+                      {office.address.map((line) => (
+                        <span key={line}>{line}</span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          <div className="footer-bottom">
+            <span>© {new Date().getFullYear()} Build Right Tech. All rights reserved.</span>
+            <div className="footer-bottom-links">
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms of Service</a>
+              <a href="#">Sitemap</a>
+            </div>
           </div>
-
-        </div>
-
-        {/* Bottom bar */}
-        <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} VectorBuild. All rights reserved.</span>
-          <span>
-            <a href="#">Privacy Policy</a> · <a href="#">Terms of Service</a> · <a href="#">Sitemap</a>
-          </span>
         </div>
       </footer>
     </>
