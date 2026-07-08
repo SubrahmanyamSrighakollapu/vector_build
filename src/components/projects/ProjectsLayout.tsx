@@ -2,9 +2,9 @@
 import { motion } from "framer-motion";
 
 const stats = [
-  { num: "10000", suffix: "+", label: "Projects Done" },
+  { num: "20000", suffix: "+", label: "Projects Done" },
   { num: "20",  suffix: "+", label: "Years Active" },
-  { num: "₹2",  suffix: "L+", label: "Project Value" },
+  { num: "$20",  suffix: "M+", label: "Project Value" },
   { num: "100", suffix: "%", label: "Safety Record" },
 ];
 

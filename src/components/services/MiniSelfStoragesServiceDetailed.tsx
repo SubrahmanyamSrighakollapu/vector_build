@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import { FiArrowRight, FiEdit3, FiLayers, FiRefreshCw, FiGrid, FiColumns, FiSidebar, FiLink2, FiBox } from "react-icons/fi";
 
 const scopeItems = [
@@ -33,7 +34,29 @@ const applications = [
   "Mini Storage",
 ];
 
+const workflowGallery = [
+  "/mini-storages-pw1.jpeg",
+  "/mini-storages-pw2.jpeg",
+  "/mini-storages-pw3.jpeg",
+  "/mini-storages-pw4.jpeg",
+  "/mini-storages-pw5.jpeg",
+  "/mini-storages-pw6.jpeg",
+  "/mini-storages-pw7.jpeg",
+  "/mini-storages-pw8.jpeg",
+  "/mini-storages-pw9.jpeg",
+];
+
 export default function MiniSelfStoragesServiceDetailed() {
+  const [activeWorkflowImage, setActiveWorkflowImage] = useState(0);
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setActiveWorkflowImage((current) => (current + 1) % workflowGallery.length);
+    }, 2600);
+
+    return () => window.clearInterval(intervalId);
+  }, []);
+
   return (
     <>
       <style>{`
@@ -80,9 +103,74 @@ export default function MiniSelfStoragesServiceDetailed() {
 
         .mss-flow, .mss-exp { background:#f8f6fc; }
         .mss-flow { padding:86px 80px; }
-        .mss-flow-grid { max-width:1240px; margin:0 auto; display:grid; grid-template-columns:minmax(320px, .92fr) minmax(0, 1.08fr); gap:42px; align-items:center; }
+        .mss-flow-grid { max-width:1320px; margin:0 auto; display:grid; grid-template-columns:minmax(420px, 1.08fr) minmax(0, .92fr); gap:52px; align-items:center; }
         .mss-media, .mss-exp-media { position:relative; border-radius:22px; overflow:hidden; background:#d7dbe3; box-shadow:0 28px 68px rgba(40,23,80,.12); }
-        .mss-media { aspect-ratio:4/3; }
+        .mss-media { aspect-ratio:16/10; min-height: 420px; }
+        .mss-media::before {
+          content:'';
+          position:absolute;
+          inset:0;
+          background:linear-gradient(180deg, rgba(18,13,31,0) 0%, rgba(18,13,31,.08) 100%);
+          z-index:1;
+          pointer-events:none;
+        }
+        .mss-media-stage {
+          position:absolute;
+          inset:0;
+          background:linear-gradient(135deg, #eef1f8 0%, #f8f6fc 60%, #eef2f8 100%);
+        }
+        .mss-slide {
+          position:absolute;
+          inset:0;
+        }
+        .mss-carousel-caption {
+          position:absolute;
+          left:20px;
+          right:20px;
+          bottom:18px;
+          z-index:2;
+          display:flex;
+          align-items:center;
+          justify-content:space-between;
+          gap:16px;
+        }
+        .mss-carousel-label {
+          display:inline-flex;
+          align-items:center;
+          gap:8px;
+          padding:8px 12px;
+          border-radius:999px;
+          background:rgba(17,12,31,.72);
+          color:rgba(255,255,255,.88);
+          font-size:.68rem;
+          font-weight:800;
+          letter-spacing:.14em;
+          text-transform:uppercase;
+          backdrop-filter:blur(10px);
+        }
+        .mss-dots {
+          display:flex;
+          align-items:center;
+          gap:8px;
+          padding:8px 10px;
+          border-radius:999px;
+          background:rgba(255,255,255,.82);
+          box-shadow:0 10px 24px rgba(40,23,80,.14);
+        }
+        .mss-dot {
+          width:8px;
+          height:8px;
+          border-radius:999px;
+          border:none;
+          padding:0;
+          background:rgba(40,23,80,.18);
+          cursor:pointer;
+          transition:all .24s ease;
+        }
+        .mss-dot.active {
+          width:24px;
+          background:#ab8cf5;
+        }
         .mss-flow-list { display:flex; flex-direction:column; gap:18px; }
         .mss-flow-item { display:grid; grid-template-columns:26px 1fr; gap:14px; align-items:start; }
         .mss-flow-mark { color:#281750; font-size:1.1rem; font-weight:900; margin-top:2px; }
@@ -105,6 +193,7 @@ export default function MiniSelfStoragesServiceDetailed() {
           .mss-hero, .mss-story, .mss-scope, .mss-flow, .mss-exp { padding-left:48px; padding-right:48px; }
           .mss-story-grid, .mss-flow-grid, .mss-exp-grid { grid-template-columns:1fr; }
           .mss-scope-grid { grid-template-columns:repeat(2, minmax(0,1fr)); }
+          .mss-media { min-height: 360px; }
         }
         @media (max-width:720px) {
           .mss-hero { min-height:560px; padding:88px 24px 72px; }
@@ -116,6 +205,7 @@ export default function MiniSelfStoragesServiceDetailed() {
           .mss-stats, .mss-scope-grid, .mss-apps { grid-template-columns:1fr; }
           .mss-actions { flex-direction:column; align-items:flex-start; }
           .mss-btn, .mss-btn-ghost { width:100%; justify-content:center; }
+          .mss-media { min-height: 300px; }
         }
       `}</style>
 
@@ -171,7 +261,40 @@ export default function MiniSelfStoragesServiceDetailed() {
         <section className="mss-flow">
           <div className="mss-flow-grid">
             <motion.div className="mss-media" initial={{ opacity: 0, x: -28 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
-              <Image src="/mini-storage-detailed-image1.jpg" alt="Mini self storages team workflow" fill style={{ objectFit: "cover" }} sizes="(max-width: 1100px) 100vw, 40vw" />
+              <div className="mss-media-stage">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={workflowGallery[activeWorkflowImage]}
+                    className="mss-slide"
+                    initial={{ opacity: 0, scale: 1.04 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.985 }}
+                    transition={{ duration: 0.55, ease: "easeOut" }}
+                  >
+                    <Image
+                      src={workflowGallery[activeWorkflowImage]}
+                      alt={`Mini self storages workflow ${activeWorkflowImage + 1}`}
+                      fill
+                      style={{ objectFit: "contain", objectPosition: "center" }}
+                      sizes="(max-width: 1100px) 100vw, 40vw"
+                    />
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+              <div className="mss-carousel-caption">
+                <div className="mss-carousel-label">Workflow Gallery {activeWorkflowImage + 1}/9</div>
+                <div className="mss-dots">
+                  {workflowGallery.map((image, index) => (
+                    <button
+                      key={image}
+                      type="button"
+                      className={`mss-dot ${index === activeWorkflowImage ? "active" : ""}`}
+                      onClick={() => setActiveWorkflowImage(index)}
+                      aria-label={`Show workflow image ${index + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 28 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
               <div className="mss-kicker">Production Workflow</div>
@@ -195,15 +318,13 @@ export default function MiniSelfStoragesServiceDetailed() {
           <div className="mss-exp-grid">
             <motion.div className="mss-exp-card" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
               <div className="mss-kicker">Project Experience</div>
-              <h2 className="mss-h2">Facility Applications</h2>
               <p className="mss-section-desc" style={{ marginBottom: 24 }}>We bring specialized expertise across a diverse range of storage facility types and structural applications.</p>
-              <div className="mss-panel-title">Facility Applications</div>
+              <div className="mss-h2">Facility Applications</div>
               <div className="mss-apps">
                 {applications.map((item) => <div key={item} className="mss-app">{item}</div>)}
               </div>
             </motion.div>
             <motion.div className="mss-exp-side" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}>
-              <div className="mss-tags"><span className="mss-tag">LGS Specialists</span><span className="mss-tag">Steel Modeling</span></div>
               <div className="mss-exp-media">
                 <Image src="/mini-storage-detailed-image2.png" alt="Mini self storages BIM structural model" fill style={{ objectFit: "cover" }} sizes="(max-width: 1100px) 100vw, 45vw" />
               </div>

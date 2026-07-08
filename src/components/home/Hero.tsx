@@ -6,10 +6,10 @@ import { FiArrowRight, FiPlay } from "react-icons/fi";
 
 
 const stats = [
-  { num: 10000, suffix: "+", label: "Projects Completed" },
+  { num: 20000, suffix: "+", label: "Projects Completed" },
   { num: 100, suffix: "%", label: "Safety Record" },
   { num: 20, suffix: "+", label: "Years Experience" },
-  { num: 38, suffix: "+", label: "Expert Engineers" },
+  { num: 150, suffix: "+", label: "Expert Engineers" },
 ];
 
 function AnimatedCounter({ target, suffix }: { target: number; suffix: string }) {

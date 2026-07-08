@@ -2,23 +2,21 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { FiLinkedin, FiTwitter, FiFacebook, FiInstagram, FiMapPin, FiPhone, FiMail } from "react-icons/fi";
+import { FiPhone, FiMail } from "react-icons/fi";
 import { companyContact, globalOffices } from "@/lib/contact";
 
 const footerLinks = {
   Company: [
     { label: "About", href: "/about" },
-    { label: "Our Team", href: "/our-team" },
+    { label: "Services", href: "/services" },
     { label: "Projects", href: "/projects" },
     { label: "Contact", href: "/contact" },
   ],
   Services: [
-    { label: "Precision Precast", href: "/services" },
-    { label: "Tilt-Up", href: "/services" },
-    { label: "Structural Steel", href: "/services" },
-    { label: "PEMB", href: "/services" },
-    { label: "Rebar", href: "/services" },
-    { label: "BIM Consulting", href: "/services" },
+    { label: "Precast", href: "/services/precast" },
+    { label: "Tilt-Up", href: "/services/tilt-up" },
+    { label: "Mini/Self Storages", href: "/services/mini-self-storages" },
+    { label: "PEMB", href: "/services/pemb" },
   ],
 };
 
@@ -32,14 +30,14 @@ export default function Footer() {
           border-top: 1px solid rgba(171,140,245,0.12);
         }
         .footer-inner {
-          padding: 72px 80px 0;
-          max-width: 1400px;
+          padding: 72px 96px 0;
+          max-width: 1680px;
           margin: 0 auto;
         }
         .footer-grid {
           display: grid;
           grid-template-columns: 1.45fr 0.9fr 0.9fr 2.75fr;
-          gap: 56px;
+          gap: 72px;
           padding-bottom: 56px;
           border-bottom: 1px solid rgba(171,140,245,0.1);
         }
@@ -50,7 +48,7 @@ export default function Footer() {
           font-size: 0.875rem;
           line-height: 1.8;
           color: rgba(216,202,250,0.5);
-          max-width: 260px;
+          max-width: 400px;
           margin-bottom: 24px;
         }
         .footer-contact-list {
@@ -132,94 +130,18 @@ export default function Footer() {
         .footer-office-head {
           display: flex;
           align-items: center;
-          gap: 10px;
+          gap: 12px;
           margin-bottom: 14px;
         }
         .footer-office-flag {
           position: relative;
-          width: 16px;
-          height: 16px;
-          border-radius: 999px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
+          width: 38px;
+          height: 26px;
+          border-radius: 6px;
           overflow: hidden;
-          border: 1px solid rgba(255,255,255,0.18);
+          border: 1px solid rgba(255,255,255,0.28);
           box-shadow: 0 4px 10px rgba(40,23,80,0.18);
           flex-shrink: 0;
-        }
-        .footer-office-flag.flag-india {
-          background: linear-gradient(to bottom, #ff9933 0 33.33%, #ffffff 33.33% 66.66%, #138808 66.66% 100%);
-        }
-        .footer-office-flag.flag-india::after {
-          content: "";
-          position: absolute;
-          inset: 5px;
-          border-radius: 50%;
-          border: 1.2px solid #1a4ea1;
-        }
-        .footer-office-flag.flag-usa {
-          background:
-            linear-gradient(to bottom,
-              #b22234 0 14.28%, #ffffff 14.28% 28.56%,
-              #b22234 28.56% 42.84%, #ffffff 42.84% 57.12%,
-              #b22234 57.12% 71.4%, #ffffff 71.4% 85.68%,
-              #b22234 85.68% 100%);
-        }
-        .footer-office-flag.flag-usa::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 52%;
-          height: 52%;
-          background: #3c3b6e;
-        }
-        .footer-office-flag.flag-usa::after {
-          content: "";
-          position: absolute;
-          top: 3px;
-          left: 3px;
-          width: 2px;
-          height: 2px;
-          border-radius: 50%;
-          background: rgba(255,255,255,0.9);
-          box-shadow:
-            4px 0 0 rgba(255,255,255,0.9),
-            0 4px 0 rgba(255,255,255,0.9),
-            4px 4px 0 rgba(255,255,255,0.9);
-        }
-        .footer-office-flag.flag-australia {
-          background: #1e3a8a;
-        }
-        .footer-office-flag.flag-australia::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 58%;
-          height: 58%;
-          background:
-            linear-gradient(0deg, transparent 42%, #ffffff 42% 58%, transparent 58%),
-            linear-gradient(90deg, transparent 42%, #ffffff 42% 58%, transparent 58%),
-            linear-gradient(45deg, transparent 44%, #ffffff 44% 56%, transparent 56%),
-            linear-gradient(-45deg, transparent 44%, #ffffff 44% 56%, transparent 56%),
-            linear-gradient(0deg, transparent 46%, #c8102e 46% 54%, transparent 54%),
-            linear-gradient(90deg, transparent 46%, #c8102e 46% 54%, transparent 54%);
-          background-color: #012169;
-        }
-        .footer-office-flag.flag-australia::after {
-          content: "";
-          position: absolute;
-          right: 3px;
-          bottom: 3px;
-          width: 3px;
-          height: 3px;
-          border-radius: 50%;
-          background: #ffffff;
-          box-shadow:
-            -5px -4px 0 0 rgba(255,255,255,0.95),
-            -1px -8px 0 0 rgba(255,255,255,0.95);
         }
         .footer-office-city {
           font-size: 0.9rem;
@@ -244,16 +166,54 @@ export default function Footer() {
           justify-content: space-between;
           padding: 20px 0;
           font-size: 0.78rem;
-          color: rgba(171,140,245,0.25);
+          color: #fff;
           flex-wrap: wrap;
           gap: 8px;
         }
-        .footer-bottom a { color: rgba(171,140,245,0.35); transition: color 0.2s; }
+        .footer-bottom a { color: #fff; transition: color 0.2s; }
         .footer-bottom a:hover { color: #ab8cf5; }
         .footer-bottom-links { display: flex; gap: 20px; }
+        .footer-powered {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          flex-wrap: wrap;
+        }
+        .footer-powered-prefix {
+          color: rgba(255,255,255,0.68);
+          font-weight: 500;
+        }
+        .footer-powered-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 2px 0;
+          border-radius: 0;
+          background: transparent;
+          border: none;
+          color: #cfaeff !important;
+          font-weight: 800;
+          letter-spacing: 0.02em;
+          text-decoration: underline;
+          text-decoration-thickness: 1.5px;
+          text-underline-offset: 4px;
+          text-decoration-color: rgba(171,140,245,0.7);
+          text-shadow: 0 0 18px rgba(171,140,245,0.22);
+        }
+        .footer-powered-link:hover {
+          color: #ffffff !important;
+          text-decoration-color: #ffffff;
+          text-shadow: 0 0 22px rgba(171,140,245,0.4);
+        }
+        .footer-powered-link::after {
+          content: "↗";
+          font-size: 0.85rem;
+          line-height: 1;
+          margin-left: 0;
+        }
 
         @media (max-width: 1100px) {
-          .footer-inner { padding: 56px 48px 0; }
+          .footer-inner { padding: 56px 48px 0; max-width: 1400px; }
           .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
           .footer-brand-col { grid-column: 1 / -1; }
           .footer-offices-col { grid-column: 1 / -1; }
@@ -287,19 +247,11 @@ export default function Footer() {
                 </Link>
               </div>
               <p className="footer-tagline">
-                Engineering excellence through precision precast, structural steel,
-                and innovative construction solutions since 1985.
+                Your trusted detailing partner for Self Storage, Tilt-Up, Precast, and PEMB projects delivering fabrication-ready shop drawings and BIM solutions worldwide.
               </p>
               <div className="footer-contact-list">
-                <span className="footer-contact-item"><FiMapPin size={13} />{companyContact.location}</span>
                 <span className="footer-contact-item"><FiPhone size={13} />{companyContact.phoneDisplay}</span>
                 <span className="footer-contact-item"><FiMail size={13} />{companyContact.email}</span>
-              </div>
-              <div className="footer-socials">
-                <a href={companyContact.socials.linkedin} className="footer-social" aria-label="LinkedIn" target="_blank" rel="noreferrer"><FiLinkedin size={15} /></a>
-                <a href="#" className="footer-social" aria-label="Twitter"><FiTwitter size={15} /></a>
-                <a href="#" className="footer-social" aria-label="Facebook"><FiFacebook size={15} /></a>
-                <a href="#" className="footer-social" aria-label="Instagram"><FiInstagram size={15} /></a>
               </div>
             </div>
 
@@ -325,12 +277,20 @@ export default function Footer() {
 
             {/* Global offices */}
             <div className="footer-offices-col">
-              <p className="footer-offices-title">Global Offices</p>
+              <p className="footer-offices-title">Global Presence</p>
               <div className="footer-offices-grid">
                 {globalOffices.map((office) => (
                   <div key={office.city} className="footer-office">
                     <div className="footer-office-head">
-                      <span className={`footer-office-flag flag-${office.country}`} aria-hidden="true" />
+                      <span className="footer-office-flag" aria-hidden="true">
+                        <Image
+                          src={office.flag}
+                          alt={`${office.city} flag`}
+                          fill
+                          style={{ objectFit: "fill" }}
+                          sizes="38px"
+                        />
+                      </span>
                       <span className="footer-office-city">{office.city}</span>
                     </div>
                     <div className="footer-office-address">
@@ -346,10 +306,9 @@ export default function Footer() {
 
           <div className="footer-bottom">
             <span>© {new Date().getFullYear()} Build Right Tech. All rights reserved.</span>
-            <div className="footer-bottom-links">
-              <a href="#">Privacy Policy</a>
-              <a href="#">Terms of Service</a>
-              <a href="#">Sitemap</a>
+            <div className="footer-powered">
+              <span className="footer-powered-prefix">Powered by</span>
+              <a href="https://vividuss.com/" target="_blank" rel="noreferrer" className="footer-powered-link">vividuss.com</a>
             </div>
           </div>
         </div>

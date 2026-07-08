@@ -178,7 +178,7 @@ export default function CallToActionOne() {
             </Link>
             <Link href="tel:+919876543211" className="cta1-btn-ghost">
               <FiPhone size={16} />
-              Call +91 9876543211
+              Call +001 4698289888
             </Link>
           </div>
         </motion.div>

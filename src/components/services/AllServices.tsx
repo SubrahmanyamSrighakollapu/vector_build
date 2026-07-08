@@ -2,12 +2,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { FiArrowUpRight, FiLayers, FiGrid, FiRotateCcw } from "react-icons/fi";
+import { FiArrowUpRight, FiLayers, FiGrid, FiRotateCcw, FiHome } from "react-icons/fi";
 
 const services = [
   { title: "Precast", sub: "Concrete Detailing", image: "/pre-cast.png", href: "/services/precast", icon: <FiLayers size={16} />, num: "01" },
   { title: "Tilt-Up", sub: "Shop Drawings & Embeds", image: "/tilt-up.png", href: "/services/tilt-up", icon: <FiRotateCcw size={16} />, num: "02" },
   { title: "Mini/Self Storages", sub: "Detailing & Coordinated Models", image: "/mini-self-storages.png", href: "/services/mini-self-storages", icon: <FiGrid size={16} />, num: "03" },
+  { title: "PEMB", sub: "Design & Detailing", image: "/pemb.png", href: "/services/pemb", icon: <FiHome size={16} />, num: "04" },
 ];
 
 export default function AllServices() {
@@ -91,7 +92,8 @@ export default function AllServices() {
         }
         .svc-grid > :nth-child(1) { grid-column: 1; grid-row: 1; }
         .svc-grid > :nth-child(2) { grid-column: 2; grid-row: 1; }
-        .svc-grid > :nth-child(3) { grid-column: 1 / 3; grid-row: 2; }
+        .svc-grid > :nth-child(3) { grid-column: 1; grid-row: 2; }
+        .svc-grid > :nth-child(4) { grid-column: 2; grid-row: 2; }
 
         .svc-card {
           position: relative; border-radius: 16px; overflow: hidden;
@@ -204,7 +206,8 @@ export default function AllServices() {
           .svc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: 260px 260px; }
           .svc-grid > :nth-child(1) { grid-column:1; grid-row:1; }
           .svc-grid > :nth-child(2) { grid-column:2; grid-row:1; }
-          .svc-grid > :nth-child(3) { grid-column:1/3; grid-row:2; }
+          .svc-grid > :nth-child(3) { grid-column:1; grid-row:2; }
+          .svc-grid > :nth-child(4) { grid-column:2; grid-row:2; }
           .svc-cta { flex-direction: column; text-align: center; }
         }
         @media (max-width: 640px) {

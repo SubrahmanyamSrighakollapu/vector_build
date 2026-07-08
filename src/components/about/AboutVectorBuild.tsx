@@ -4,8 +4,8 @@ import { FiAward, FiTrendingUp, FiDollarSign, FiShield } from "react-icons/fi";
 
 const stats = [
   { icon: <FiAward size={20} />, num: "20+", label: "Years Experience" },
-  { icon: <FiTrendingUp size={20} />, num: "10000+", label: "Projects Delivered" },
-  { icon: <FiDollarSign size={20} />, num: "₹2L+", label: "Project Value" },
+  { icon: <FiTrendingUp size={20} />, num: "20000+", label: "Projects Delivered" },
+  { icon: <FiDollarSign size={20} />, num: "$20M+", label: "Project Value" },
   { icon: <FiShield size={20} />, num: "100%", label: "Safety Record" },
 ];
 

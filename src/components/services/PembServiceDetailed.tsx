@@ -2,211 +2,798 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FiArrowRight, FiZap, FiDollarSign, FiSliders, FiSun } from "react-icons/fi";
+import {
+  FiArrowRight,
+  FiBarChart2,
+  FiGrid,
+  FiShield,
+  FiFeather,
+  FiEdit3,
+  FiPackage,
+  FiTool,
+  FiHome,
+  FiTruck,
+  FiShoppingBag,
+  FiBriefcase,
+  FiBox,
+} from "react-icons/fi";
 
 const stats = [
-  { num: "20+",  label: "Projects Delivered" },
+  { num: "500+", label: "Projects Delivered" },
   { num: "Zero", label: "Safety Incidents YTD" },
   { num: "24/7", label: "On-Site Support" },
 ];
 
-const whyPemb = [
-  { icon: <FiZap size={18}/>,        title: "Quick Installation",  desc: "Precision-engineered components ready for rapid on-site assembly, cutting construction time by up to 40%." },
-  { icon: <FiDollarSign size={18}/>, title: "Cost Efficiency",     desc: "Lower material costs and reduced labor hours translate to significant savings without compromising quality." },
-  { icon: <FiSliders size={18}/>,    title: "Customization",       desc: "Highly versatile designs tailored to your specific spatial and aesthetic needs, from clear-span to multi-story." },
-  { icon: <FiSun size={18}/>,        title: "Energy Efficiency",   desc: "Advanced insulation systems and thermal-efficient paneling designed for lower utility costs and LEED compliance." },
+const structuralDesign = [
+  {
+    icon: <FiBarChart2 size={18} />,
+    title: "Structural Analysis",
+    desc: "Complex structural simulation using STAAD.Pro for optimized weight-to-strength ratios.",
+  },
+  {
+    icon: <FiTool size={18} />,
+    title: "Load Calculations",
+    desc: "Precise foundation load data and seismic or wind calculations compliant with IBC and ASCE.",
+  },
+  {
+    icon: <FiGrid size={18} />,
+    title: "Frame Design",
+    desc: "Primary and secondary member optimization for clear-span and multi-span steel buildings.",
+  },
+  {
+    icon: <FiFeather size={18} />,
+    title: "Sustainable Design",
+    desc: "Optimized material usage that reduces environmental footprint and project cost without sacrificing performance.",
+  },
 ];
 
-const methodology = [
-  { num: "01", title: "Design Optimization",  desc: "Leveraging BIM technology to create the most material-efficient structure possible." },
-  { num: "02", title: "Load Calculations",    desc: "Rigorous stress analysis for seismic, wind, and snow loads customized to your site location." },
-  { num: "03", title: "Precision Fabrication",desc: "CNC-guided manufacturing ensuring every bolt hole aligns perfectly for field assembly." },
-  { num: "04", title: "On-Site Assembly",     desc: "Rapid construction phase guided by detailed erection drawings and technical support." },
+const detailingServices = [
+  {
+    title: "Shop Drawings",
+    desc: "Accurate fabrication drawings for every individual member with clear welding symbols and dimensional control.",
+  },
+  {
+    title: "BOM & CNC Support",
+    desc: "Automated Bills of Materials and direct exports for CNC drilling and cutting workflows.",
+  },
+  {
+    title: "Erection Documentation",
+    desc: "Comprehensive site manuals, anchor bolt layouts, and part-orientation guides for field teams.",
+  },
+  {
+    title: "Coordination",
+    desc: "Integration with HVAC, plumbing, and electrical systems to prevent avoidable field conflicts.",
+  },
 ];
 
-const applications = [
-  "Industrial Warehouses & Distribution Centers",
-  "Aircraft Hangars & Aviation Facilities",
-  "Manufacturing Plants & Factories",
-  "Retail & Commercial Buildings",
-  "Sports & Recreation Facilities",
-  "Cold Storage & Refrigerated Warehouses",
+const workflow = [
+  { num: "1", title: "Project Review", desc: "Initial assessment of codes, building geometry, and delivery requirements." },
+  { num: "2", title: "Structural Eng.", desc: "Rigorous analysis and frame optimization aligned with load criteria." },
+  { num: "3", title: "3D Modeling", desc: "Full digital twin creation and clash check before documentation." },
+  { num: "4", title: "Shop Drawings", desc: "Detailed production documentation for fabrication and erection." },
+  { num: "5", title: "QA Protocol", desc: "Triple-check against client standards, codes, and revision controls." },
+  { num: "6", title: "Fab Support", desc: "Direct liaison with manufacturing teams to keep production moving." },
+];
+
+const buildingTypes = [
+  { icon: <FiBox size={20} />, label: "Industrial Facilities" },
+  { icon: <FiHome size={20} />, label: "Warehouses" },
+  { icon: <FiTruck size={20} />, label: "Distribution Centers" },
+  { icon: <FiTool size={20} />, label: "Aircraft Hangars" },
+  { icon: <FiShield size={20} />, label: "Agricultural Buildings" },
+  { icon: <FiShoppingBag size={20} />, label: "Retail Spaces" },
+  { icon: <FiBriefcase size={20} />, label: "Office Buildings" },
+  { icon: <FiPackage size={20} />, label: "Sports Facilities" },
+];
+
+const advantageItems = [
+  {
+    icon: <FiShield size={17} />,
+    title: "Experienced Engineers",
+    desc: "A seasoned team focused on PEMB structural analysis, optimization, and code-compliant delivery.",
+  },
+  {
+    icon: <FiGrid size={17} />,
+    title: "BIM-Based Workflow",
+    desc: "A coordinated 3D process that resolves field clashes before fabrication and erection begin.",
+  },
+  {
+    icon: <FiArrowRight size={17} />,
+    title: "Fast Turnaround",
+    desc: "Optimized internal review protocols that keep detailing packages moving on schedule.",
+  },
+  {
+    icon: <FiEdit3 size={17} />,
+    title: "Cost-Effective Solutions",
+    desc: "Precision engineering that minimizes steel wastage, rework, and production inefficiencies.",
+  },
 ];
 
 export default function PembServiceDetailed() {
   return (
     <>
       <style>{`
-        .pemb { background: #0a0618; }
-        .pemb-hero { background: #0a0618; padding: 96px 80px 80px; text-align: center; position: relative; overflow: hidden; }
-        .pemb-hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(171,140,245,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(171,140,245,0.05) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; }
-        .pemb-hero::after { content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 600px; height: 400px; background: radial-gradient(ellipse, rgba(171,140,245,0.12) 0%, transparent 70%); pointer-events: none; }
-        .pemb-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #ab8cf5; margin-bottom: 20px; position: relative; z-index: 1; }
-        .pemb-eyebrow::before, .pemb-eyebrow::after { content: ''; width: 24px; height: 1.5px; background: #ab8cf5; border-radius: 2px; }
-        .pemb-hero-title { font-size: clamp(2rem,4vw,3.5rem); font-weight: 900; color: #fff; letter-spacing: -1.5px; line-height: 1.05; margin-bottom: 20px; position: relative; z-index: 1; }
-        .pemb-hero-desc { font-size: 1.05rem; color: rgba(216,202,250,0.6); max-width: 540px; margin: 0 auto 36px; line-height: 1.8; position: relative; z-index: 1; }
-        .pemb-hero-btn { display: inline-flex; align-items: center; gap: 8px; background: #ab8cf5; color: #0a0618; font-size: 0.9rem; font-weight: 700; padding: 13px 28px; border-radius: 10px; transition: all 0.25s ease; position: relative; z-index: 1; }
-        .pemb-hero-btn:hover { background: #d8cafa; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(171,140,245,0.4); }
+        .pemb {
+          background: #f4f3f8;
+          color: #0f2342;
+        }
+        .pemb-wrap {
+          max-width: 1260px;
+          margin: 0 auto;
+        }
+        .pemb-hero {
+          position: relative;
+          padding: 104px 80px 88px;
+          background:
+            radial-gradient(circle at top left, rgba(171,140,245,.14) 0%, transparent 34%),
+            linear-gradient(180deg, #f7f6fb 0%, #f2f1f7 100%);
+          overflow: hidden;
+        }
+        .pemb-hero::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background-image:
+            linear-gradient(rgba(15,35,66,.035) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(15,35,66,.035) 1px, transparent 1px);
+          background-size: 56px 56px;
+          opacity: .55;
+          pointer-events: none;
+        }
+        .pemb-hero-grid {
+          position: relative;
+          z-index: 1;
+          display: grid;
+          grid-template-columns: minmax(0, .92fr) minmax(360px, 1.08fr);
+          gap: 48px;
+          align-items: center;
+        }
+        .pemb-chip {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 8px 14px;
+          border-radius: 999px;
+          background: rgba(255,255,255,.88);
+          border: 1px solid rgba(15,35,66,.08);
+          color: #5f6f87;
+          font-size: .68rem;
+          font-weight: 800;
+          letter-spacing: .16em;
+          text-transform: uppercase;
+          box-shadow: 0 8px 22px rgba(15,35,66,.06);
+          margin-bottom: 22px;
+        }
+        .pemb-chip::before {
+          content: "";
+          width: 18px;
+          height: 2px;
+          border-radius: 999px;
+          background: #ab8cf5;
+        }
+        .pemb-title {
+          font-size: clamp(2.45rem, 4.6vw, 4.2rem);
+          line-height: 1.08;
+          letter-spacing: -.05em;
+          font-weight: 900;
+          color: #102645;
+          margin-bottom: 18px;
+          max-width: 720px;
+        }
+        .pemb-desc {
+          font-size: 1rem;
+          line-height: 1.85;
+          color: #6a7184;
+          max-width: 560px;
+          margin-bottom: 28px;
+        }
+        .pemb-actions {
+          display: flex;
+          gap: 14px;
+          flex-wrap: wrap;
+        }
+        .pemb-btn,
+        .pemb-btn-alt {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          min-width: 154px;
+          padding: 13px 22px;
+          border-radius: 10px;
+          font-size: .92rem;
+          font-weight: 700;
+          transition: all .24s ease;
+        }
+        .pemb-btn {
+          background: linear-gradient(135deg, #7e57d8 0%, #ab8cf5 100%);
+          color: #fff;
+          box-shadow: 0 16px 34px rgba(126,87,216,.22);
+        }
+        .pemb-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 22px 40px rgba(126,87,216,.28);
+        }
+        .pemb-btn-alt {
+          background: rgba(255,255,255,.88);
+          border: 1px solid rgba(15,35,66,.16);
+          color: #3f4a5f;
+        }
+        .pemb-btn-alt:hover {
+          background: #fff;
+          border-color: rgba(126,87,216,.26);
+        }
+        .pemb-hero-media {
+          position: relative;
+          min-height: 420px;
+          border-radius: 20px;
+          overflow: hidden;
+          background: #fff;
+          border: 1px solid rgba(15,35,66,.08);
+          box-shadow: 0 18px 48px rgba(26,35,61,.12);
+        }
+        .pemb-hero-media::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(255,255,255,.02) 0%, rgba(15,35,66,.08) 100%);
+          pointer-events: none;
+        }
 
-        /* stats */
+        .pemb-section {
+          padding: 82px 80px;
+          background: #f8f7fb;
+        }
+        .pemb-section.white {
+          background: #fff;
+        }
+        .pemb-kicker {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          color: #ab8cf5;
+          font-size: .74rem;
+          font-weight: 800;
+          letter-spacing: .15em;
+          text-transform: uppercase;
+          margin-bottom: 18px;
+        }
+        .pemb-kicker::before {
+          content: "";
+          width: 30px;
+          height: 2px;
+          background: #f59e0b;
+          border-radius: 999px;
+        }
+        .pemb-h2 {
+          font-size: clamp(1.8rem, 2.7vw, 2.6rem);
+          line-height: 1.14;
+          letter-spacing: -.04em;
+          font-weight: 900;
+          color: #132849;
+          margin-bottom: 14px;
+        }
+        .pemb-sub {
+          font-size: .98rem;
+          line-height: 1.8;
+          color: #70778c;
+          max-width: 680px;
+        }
+        .pemb-design-grid {
+          margin-top: 32px;
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 18px;
+        }
+        .pemb-card {
+          background: linear-gradient(180deg, #fff 0%, #fbfbff 100%);
+          border: 1px solid #e8e5f4;
+          border-radius: 18px;
+          padding: 24px 22px;
+          box-shadow: 0 12px 30px rgba(26,35,61,.05);
+          transition: transform .24s ease, border-color .24s ease, box-shadow .24s ease;
+        }
+        .pemb-card:hover {
+          transform: translateY(-4px);
+          border-color: rgba(126,87,216,.28);
+          box-shadow: 0 20px 40px rgba(26,35,61,.08);
+        }
+        .pemb-card-icon {
+          width: 42px;
+          height: 42px;
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #29496d;
+          background: rgba(41,73,109,.08);
+          margin-bottom: 18px;
+        }
+        .pemb-card-title {
+          font-size: 1.02rem;
+          font-weight: 800;
+          color: #153152;
+          margin-bottom: 8px;
+        }
+        .pemb-card-desc {
+          font-size: .88rem;
+          line-height: 1.7;
+          color: #70778c;
+        }
+
+        .pemb-detailing-grid {
+          display: grid;
+          grid-template-columns: minmax(300px, .88fr) minmax(0, 1.12fr);
+          gap: 34px;
+          align-items: start;
+        }
+        .pemb-detailing-points {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          margin-top: 28px;
+        }
+        .pemb-detailing-point {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          color: #6a6f82;
+          font-size: .9rem;
+        }
+        .pemb-detailing-point::before {
+          content: "";
+          width: 8px;
+          height: 8px;
+          border-radius: 999px;
+          background: #f59e0b;
+          box-shadow: 0 0 0 4px rgba(245,158,11,.12);
+          flex-shrink: 0;
+        }
+        .pemb-detailing-cards {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 16px;
+        }
+        .pemb-detailing-card {
+          background: #fff;
+          border: 1px solid #e7e5f2;
+          border-left: 4px solid #1f3f62;
+          border-radius: 16px;
+          padding: 24px 22px;
+          box-shadow: 0 12px 30px rgba(26,35,61,.05);
+        }
+        .pemb-detailing-title {
+          font-size: .82rem;
+          font-weight: 900;
+          letter-spacing: .08em;
+          text-transform: uppercase;
+          color: #55647b;
+          margin-bottom: 12px;
+        }
+        .pemb-detailing-desc {
+          font-size: .9rem;
+          line-height: 1.72;
+          color: #687084;
+        }
+
         .pemb-stats {
-          background: #281750; padding: 48px;
-          display: grid; grid-template-columns: repeat(3,1fr); gap: 0;
+          background: linear-gradient(135deg, #281750 0%, #1f1141 100%);
+          padding: 44px 80px;
+          border-top: 2px solid #2d9cff;
         }
-        .pemb-stat { text-align: center; padding: 0 24px; border-right: 1px solid rgba(171,140,245,0.2); }
-        .pemb-stat:last-child { border-right: none; }
-        .pemb-stat-num { font-size: 2.2rem; font-weight: 900; color: #fff; line-height: 1; margin-bottom: 8px; }
-        .pemb-stat-label { font-size: 0.82rem; color: rgba(216,202,250,0.7); font-weight: 500; }
+        .pemb-stats-grid {
+          max-width: 1260px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 24px;
+        }
+        .pemb-stat {
+          text-align: center;
+          color: #fff;
+        }
+        .pemb-stat-num {
+          font-size: clamp(2rem, 3.4vw, 2.9rem);
+          font-weight: 900;
+          line-height: 1;
+          margin-bottom: 10px;
+        }
+        .pemb-stat-label {
+          font-size: 1rem;
+          color: rgba(255,255,255,.86);
+        }
 
-        /* why */
-        .pemb-why { padding: 80px 48px; }
-        .pemb-section-label {
-          display: flex; align-items: center; gap: 10px;
-          font-size: 0.72rem; font-weight: 700; letter-spacing: 2px;
-          text-transform: uppercase; color: #ab8cf5; margin-bottom: 12px;
+        .pemb-workflow {
+          padding: 78px 80px 26px;
+          background: #fff;
         }
-        .pemb-section-label::before { content: ''; width: 4px; height: 16px; background: #ab8cf5; border-radius: 2px; }
-        .pemb-section-title { font-size: clamp(1.3rem,2vw,1.8rem); font-weight: 800; color: #0f0824; margin-bottom: 8px; }
-        .pemb-section-sub { font-size: 0.92rem; color: #6b6b80; margin-bottom: 36px; }
-        .pemb-why-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
-        .pemb-why-card {
-          background: #f9f8ff; border: 1px solid #ede9ff; border-radius: 14px;
-          padding: 24px 20px; transition: all 0.22s ease;
+        .pemb-workflow-title {
+          text-align: center;
+          font-size: clamp(1.7rem, 2.5vw, 2.25rem);
+          font-weight: 900;
+          color: #143153;
+          margin-bottom: 34px;
+          letter-spacing: -.03em;
         }
-        .pemb-why-card:hover { border-color: #ab8cf5; box-shadow: 0 8px 28px rgba(40,23,80,0.08); transform: translateY(-3px); }
-        .pemb-why-icon {
-          width: 40px; height: 40px; border-radius: 10px;
-          background: rgba(171,140,245,0.12); color: #ab8cf5;
-          display: flex; align-items: center; justify-content: center; margin-bottom: 14px;
+        .pemb-workflow-grid {
+          display: grid;
+          grid-template-columns: repeat(6, minmax(0, 1fr));
+          gap: 18px;
+          align-items: start;
         }
-        .pemb-why-title { font-size: 0.9rem; font-weight: 700; color: #0f0824; margin-bottom: 8px; }
-        .pemb-why-desc { font-size: 0.82rem; color: #6b6b80; line-height: 1.65; }
+        .pemb-workflow-step {
+          text-align: center;
+          padding: 0 8px;
+        }
+        .pemb-workflow-num {
+          width: 34px;
+          height: 34px;
+          border-radius: 10px;
+          margin: 0 auto 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #0e2a4b;
+          color: #fff;
+          font-size: .82rem;
+          font-weight: 900;
+          box-shadow: 0 12px 24px rgba(14,42,75,.16);
+        }
+        .pemb-workflow-step-title {
+          font-size: .74rem;
+          font-weight: 900;
+          letter-spacing: .08em;
+          text-transform: uppercase;
+          color: #17365a;
+          margin-bottom: 8px;
+        }
+        .pemb-workflow-step-desc {
+          font-size: .82rem;
+          line-height: 1.6;
+          color: #787f93;
+        }
 
-        /* methodology */
-        .pemb-method {
-          background: #f9f8ff; padding: 80px 48px;
-          display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+        .pemb-types {
+          padding: 48px 80px 84px;
+          background: #f7f5fb;
         }
-        .pemb-method-steps { display: flex; flex-direction: column; gap: 20px; }
-        .pemb-method-step {
-          display: flex; gap: 16px; align-items: flex-start;
-          padding: 18px; background: #fff; border: 1px solid #ede9ff;
-          border-radius: 12px; transition: all 0.22s ease;
+        .pemb-types-title {
+          text-align: center;
+          font-size: clamp(1.8rem, 2.7vw, 2.45rem);
+          font-weight: 900;
+          color: #3d2a76;
+          margin-bottom: 30px;
+          letter-spacing: -.04em;
         }
-        .pemb-method-step:hover { border-color: #ab8cf5; box-shadow: 0 4px 16px rgba(40,23,80,0.07); }
-        .pemb-method-num {
-          width: 36px; height: 36px; border-radius: 50%; background: #281750;
-          color: #fff; font-size: 0.72rem; font-weight: 800;
-          display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-          box-shadow: 0 0 0 3px rgba(171,140,245,0.25);
+        .pemb-types-grid {
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 16px;
         }
-        .pemb-method-title { font-size: 0.9rem; font-weight: 700; color: #0f0824; margin-bottom: 4px; }
-        .pemb-method-desc { font-size: 0.82rem; color: #6b6b80; line-height: 1.6; }
-        .pemb-method-img { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 4/3; box-shadow: 0 16px 48px rgba(40,23,80,0.12); }
+        .pemb-type {
+          background: #fdfdff;
+          border: 1px solid #e6e3f0;
+          border-radius: 16px;
+          min-height: 98px;
+          padding: 18px 16px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          text-align: center;
+          color: #1c3658;
+          box-shadow: 0 10px 24px rgba(26,35,61,.04);
+        }
+        .pemb-type span {
+          font-size: .86rem;
+          font-weight: 700;
+          line-height: 1.45;
+        }
 
-        /* applications */
-        .pemb-apps {
-          padding: 80px 48px;
-          display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+        .pemb-advantage {
+          padding: 0 80px 100px;
+          background: #f7f5fb;
         }
-        .pemb-apps-img { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 4/3; box-shadow: 0 16px 48px rgba(40,23,80,0.12); }
-        .pemb-apps-list { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
-        .pemb-app-item {
-          display: flex; align-items: center; gap: 12px;
-          padding: 14px 16px; background: #f9f8ff; border: 1px solid #ede9ff;
-          border-radius: 10px; font-size: 0.88rem; color: #281750; font-weight: 600;
-          transition: all 0.2s ease;
+        .pemb-advantage-grid {
+          display: grid;
+          grid-template-columns: minmax(0, .96fr) minmax(320px, 1.04fr);
+          gap: 40px;
+          align-items: center;
         }
-        .pemb-app-item:hover { border-color: #ab8cf5; background: #faf8ff; }
-        .pemb-app-item::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #ab8cf5; flex-shrink: 0; }
+        .pemb-advantage-media {
+          position: relative;
+          aspect-ratio: 4 / 3;
+          border-radius: 20px;
+          overflow: hidden;
+          box-shadow: 0 18px 48px rgba(26,35,61,.12);
+          background: #d6dde8;
+        }
+        .pemb-advantage-title {
+          font-size: clamp(1.9rem, 2.8vw, 2.65rem);
+          font-weight: 900;
+          color: #17365a;
+          margin-bottom: 22px;
+          letter-spacing: -.04em;
+          line-height: 1.1;
+        }
+        .pemb-advantage-list {
+          display: flex;
+          flex-direction: column;
+          gap: 14px;
+        }
+        .pemb-advantage-item {
+          display: grid;
+          grid-template-columns: 42px 1fr;
+          gap: 14px;
+          align-items: start;
+          padding: 14px 0;
+          border-bottom: 1px solid rgba(19,40,73,.08);
+        }
+        .pemb-advantage-item:last-child {
+          border-bottom: none;
+        }
+        .pemb-advantage-icon {
+          width: 38px;
+          height: 38px;
+          border-radius: 11px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #d99020;
+          background: rgba(217,144,32,.12);
+          margin-top: 3px;
+        }
+        .pemb-advantage-item-title {
+          font-size: 1rem;
+          font-weight: 800;
+          color: #183659;
+          margin-bottom: 4px;
+        }
+        .pemb-advantage-item-desc {
+          font-size: .9rem;
+          line-height: 1.72;
+          color: #717a8f;
+        }
 
-        @media (max-width: 960px) {
-          .pemb-hero { padding: 56px 20px 48px; }
-          .pemb-stats { grid-template-columns: 1fr; padding: 40px 20px; gap: 24px; }
-          .pemb-stat { border-right: none; border-bottom: 1px solid rgba(171,140,245,0.2); padding-bottom: 20px; }
-          .pemb-stat:last-child { border-bottom: none; }
-          .pemb-why { padding: 56px 20px; }
-          .pemb-why-grid { grid-template-columns: repeat(2,1fr); }
-          .pemb-method { grid-template-columns: 1fr; padding: 56px 20px; gap: 40px; }
-          .pemb-apps { grid-template-columns: 1fr; padding: 56px 20px; gap: 40px; }
+        @media (max-width: 1120px) {
+          .pemb-hero-grid,
+          .pemb-detailing-grid,
+          .pemb-advantage-grid {
+            grid-template-columns: 1fr;
+          }
+          .pemb-design-grid,
+          .pemb-types-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+          .pemb-workflow-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            row-gap: 24px;
+          }
         }
-        @media (max-width: 560px) {
-          .pemb-why-grid { grid-template-columns: 1fr; }
+        @media (max-width: 780px) {
+          .pemb-hero,
+          .pemb-section,
+          .pemb-stats,
+          .pemb-workflow,
+          .pemb-types,
+          .pemb-advantage {
+            padding-left: 24px;
+            padding-right: 24px;
+          }
+          .pemb-hero {
+            padding-top: 90px;
+            padding-bottom: 72px;
+          }
+          .pemb-hero-media {
+            min-height: 280px;
+          }
+          .pemb-actions {
+            flex-direction: column;
+            align-items: stretch;
+          }
+          .pemb-btn,
+          .pemb-btn-alt {
+            width: 100%;
+          }
+          .pemb-design-grid,
+          .pemb-detailing-cards,
+          .pemb-stats-grid,
+          .pemb-workflow-grid,
+          .pemb-types-grid {
+            grid-template-columns: 1fr;
+          }
         }
       `}</style>
 
       <div className="pemb">
-        <div className="pemb-hero">
-          <div className="pemb-eyebrow">PEMB</div>
-          <h1 className="pemb-hero-title">Smart & Scalable Metal Building Systems</h1>
-          <p className="pemb-hero-desc">
-            High-performance structural solutions engineered for speed, cost-efficiency,
-            and lifelong durability. We redefine industrial architecture.
-          </p>
-          <Link href="/projects" className="pemb-hero-btn">View Projects <FiArrowRight size={15}/></Link>
-        </div>
+        <section className="pemb-hero">
+          <div className="pemb-wrap pemb-hero-grid">
+            <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65 }}>
+              <div className="pemb-chip">Precision Engineered Solutions</div>
+              <h1 className="pemb-title">Precision Engineering for Pre-Engineered Metal Buildings</h1>
+              <p className="pemb-desc">
+                Comprehensive engineering, detailing, and fabrication support to deliver efficient,
+                cost-effective, and sustainable structural solutions for PEMB facilities worldwide.
+              </p>
+              <div className="pemb-actions">
+                <Link href="/contact" className="pemb-btn">
+                  Get a Quote <FiArrowRight size={15} />
+                </Link>
+                <Link href="/services" className="pemb-btn-alt">
+                  Our Services
+                </Link>
+              </div>
+            </motion.div>
 
-        <div className="pemb-stats">
-          {stats.map((s) => (
-            <div className="pemb-stat" key={s.label}>
-              <div className="pemb-stat-num">{s.num}</div>
-              <div className="pemb-stat-label">{s.label}</div>
+            <motion.div
+              className="pemb-hero-media"
+              initial={{ opacity: 0, x: 26 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.72 }}
+            >
+              <Image
+                src="/pemb.png"
+                alt="PEMB structural steel frame"
+                fill
+                priority
+                style={{ objectFit: "cover" }}
+                sizes="(max-width: 1120px) 100vw, 48vw"
+              />
+            </motion.div>
+          </div>
+        </section>
+
+        <section className="pemb-section white">
+          <div className="pemb-wrap">
+            <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+              <div className="pemb-kicker">PEMB Structural Design</div>
+              <h2 className="pemb-h2">Advanced analytical engineering for peak structural performance</h2>
+              <p className="pemb-sub">
+                Our PEMB design solutions focus on stability, optimization, and code-driven detailing so each frame performs efficiently under project-specific environmental loads.
+              </p>
+            </motion.div>
+
+            <div className="pemb-design-grid">
+              {structuralDesign.map((item, index) => (
+                <motion.div
+                  key={item.title}
+                  className="pemb-card"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: index * 0.05 }}
+                >
+                  <div className="pemb-card-icon">{item.icon}</div>
+                  <div className="pemb-card-title">{item.title}</div>
+                  <div className="pemb-card-desc">{item.desc}</div>
+                </motion.div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        </section>
 
-        <div className="pemb-why">
-          <div className="pemb-section-label">Why Choose Pre-Engineered Systems</div>
-          <h2 className="pemb-section-title">The Smart Choice for Industrial Construction</h2>
-          <p className="pemb-section-sub">Our structural solutions provide the perfect balance of engineering precision and economic value.</p>
-          <div className="pemb-why-grid">
-            {whyPemb.map((w) => (
-              <div className="pemb-why-card" key={w.title}>
-                <div className="pemb-why-icon">{w.icon}</div>
-                <div className="pemb-why-title">{w.title}</div>
-                <p className="pemb-why-desc">{w.desc}</p>
+        <section className="pemb-section">
+          <div className="pemb-wrap pemb-detailing-grid">
+            <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+              <div className="pemb-kicker">PEMB Detailing Services</div>
+              <h2 className="pemb-h2">High-precision documentation that bridges engineering and the shop floor</h2>
+              <p className="pemb-sub">
+                We create coordinated PEMB documentation packages that keep fabricators, erectors, and project managers working from a single dependable source of truth.
+              </p>
+              <div className="pemb-detailing-points">
+                <div className="pemb-detailing-point">Tekla and BIM-enabled expert modeling</div>
+                <div className="pemb-detailing-point">AISC compliant standards and documentation controls</div>
+                <div className="pemb-detailing-point">Zero-clash assurance before field execution</div>
+              </div>
+            </motion.div>
+
+            <div className="pemb-detailing-cards">
+              {detailingServices.map((item, index) => (
+                <motion.div
+                  key={item.title}
+                  className="pemb-detailing-card"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: index * 0.05 }}
+                >
+                  <div className="pemb-detailing-title">{item.title}</div>
+                  <div className="pemb-detailing-desc">{item.desc}</div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="pemb-stats">
+          <div className="pemb-stats-grid">
+            {stats.map((item) => (
+              <div key={item.label} className="pemb-stat">
+                <div className="pemb-stat-num">{item.num}</div>
+                <div className="pemb-stat-label">{item.label}</div>
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
-        <div className="pemb-method">
-          <div>
-            <div className="pemb-section-label">Our Methodology</div>
-            <h2 className="pemb-section-title">Engineering Approach</h2>
-            <p className="pemb-section-sub" style={{ marginBottom: 28 }}>A structured process from concept to completion.</p>
-            <div className="pemb-method-steps">
-              {methodology.map((m) => (
-                <div className="pemb-method-step" key={m.num}>
-                  <div className="pemb-method-num">{m.num}</div>
-                  <div>
-                    <div className="pemb-method-title">{m.title}</div>
-                    <div className="pemb-method-desc">{m.desc}</div>
+        <section className="pemb-workflow">
+          <div className="pemb-wrap">
+            <h2 className="pemb-workflow-title">Our Engineering Workflow</h2>
+            <div className="pemb-workflow-grid">
+              {workflow.map((item, index) => (
+                <motion.div
+                  key={item.num}
+                  className="pemb-workflow-step"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.42, delay: index * 0.04 }}
+                >
+                  <div className="pemb-workflow-num">{item.num}</div>
+                  <div className="pemb-workflow-step-title">{item.title}</div>
+                  <div className="pemb-workflow-step-desc">{item.desc}</div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="pemb-types">
+          <div className="pemb-wrap">
+            <h2 className="pemb-types-title">Building Types Supported</h2>
+            <div className="pemb-types-grid">
+              {buildingTypes.map((item, index) => (
+                <motion.div
+                  key={item.label}
+                  className="pemb-type"
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.03 }}
+                >
+                  {item.icon}
+                  <span>{item.label}</span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="pemb-advantage">
+          <div className="pemb-wrap pemb-advantage-grid">
+            <motion.div
+              className="pemb-advantage-media"
+              initial={{ opacity: 0, x: -24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.65 }}
+            >
+              <Image
+                src="/structural-steel.png"
+                alt="PEMB structural precision workflow"
+                fill
+                style={{ objectFit: "cover" }}
+                sizes="(max-width: 1120px) 100vw, 44vw"
+              />
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.65 }}>
+              <div className="pemb-advantage-title">The Structural Precision Advantage</div>
+              <div className="pemb-advantage-list">
+                {advantageItems.map((item) => (
+                  <div key={item.title} className="pemb-advantage-item">
+                    <div className="pemb-advantage-icon">{item.icon}</div>
+                    <div>
+                      <div className="pemb-advantage-item-title">{item.title}</div>
+                      <div className="pemb-advantage-item-desc">{item.desc}</div>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            </motion.div>
           </div>
-          <div className="pemb-method-img">
-            <Image src="/pemb.png" alt="PEMB Engineering" fill style={{ objectFit: "cover" }} sizes="50vw"/>
-          </div>
-        </div>
-
-        <div className="pemb-apps">
-          <div className="pemb-apps-img">
-            <Image src="/structural-steel.png" alt="PEMB Applications" fill style={{ objectFit: "cover" }} sizes="50vw"/>
-          </div>
-          <div>
-            <div className="pemb-section-label">Applications</div>
-            <h2 className="pemb-section-title">Built for Every Industry</h2>
-            <p className="pemb-section-sub">From aviation to retail, our PEMB solutions adapt to any requirement.</p>
-            <div className="pemb-apps-list">
-              {applications.map((a) => (
-                <div className="pemb-app-item" key={a}>{a}</div>
-              ))}
-            </div>
-          </div>
-        </div>
+        </section>
       </div>
     </>
   );

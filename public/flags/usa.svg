@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7410 3900">
+  <rect width="7410" height="3900" fill="#b22234"/>
+  <g fill="#ffffff">
+    <rect y="300" width="7410" height="300"/>
+    <rect y="900" width="7410" height="300"/>
+    <rect y="1500" width="7410" height="300"/>
+    <rect y="2100" width="7410" height="300"/>
+    <rect y="2700" width="7410" height="300"/>
+    <rect y="3300" width="7410" height="300"/>
+  </g>
+  <rect width="2964" height="2100" fill="#3c3b6e"/>
+  <g fill="#ffffff">
+    <g id="s">
+      <path d="M247 90 269 157 339 157 282 198 304 265 247 224 190 265 212 198 155 157 225 157Z"/>
+    </g>
+    <g transform="translate(247 210)">
+      <path d="M247 90 269 157 339 157 282 198 304 265 247 224 190 265 212 198 155 157 225 157Z"/>
+    </g>
+  </g>
+  <g fill="#ffffff">
+    <use href="#s" x="0" y="0"/>
+    <use href="#s" x="494" y="0"/>
+    <use href="#s" x="988" y="0"/>
+    <use href="#s" x="1482" y="0"/>
+    <use href="#s" x="1976" y="0"/>
+    <use href="#s" x="2470" y="0"/>
+    <use href="#s" x="247" y="210"/>
+    <use href="#s" x="741" y="210"/>
+    <use href="#s" x="1235" y="210"/>
+    <use href="#s" x="1729" y="210"/>
+    <use href="#s" x="2223" y="210"/>
+    <use href="#s" x="0" y="420"/>
+    <use href="#s" x="494" y="420"/>
+    <use href="#s" x="988" y="420"/>
+    <use href="#s" x="1482" y="420"/>
+    <use href="#s" x="1976" y="420"/>
+    <use href="#s" x="2470" y="420"/>
+    <use href="#s" x="247" y="630"/>
+    <use href="#s" x="741" y="630"/>
+    <use href="#s" x="1235" y="630"/>
+    <use href="#s" x="1729" y="630"/>
+    <use href="#s" x="2223" y="630"/>
+    <use href="#s" x="0" y="840"/>
+    <use href="#s" x="494" y="840"/>
+    <use href="#s" x="988" y="840"/>
+    <use href="#s" x="1482" y="840"/>
+    <use href="#s" x="1976" y="840"/>
+    <use href="#s" x="2470" y="840"/>
+    <use href="#s" x="247" y="1050"/>
+    <use href="#s" x="741" y="1050"/>
+    <use href="#s" x="1235" y="1050"/>
+    <use href="#s" x="1729" y="1050"/>
+    <use href="#s" x="2223" y="1050"/>
+    <use href="#s" x="0" y="1260"/>
+    <use href="#s" x="494" y="1260"/>
+    <use href="#s" x="988" y="1260"/>
+    <use href="#s" x="1482" y="1260"/>
+    <use href="#s" x="1976" y="1260"/>
+    <use href="#s" x="2470" y="1260"/>
+    <use href="#s" x="247" y="1470"/>
+    <use href="#s" x="741" y="1470"/>
+    <use href="#s" x="1235" y="1470"/>
+    <use href="#s" x="1729" y="1470"/>
+    <use href="#s" x="2223" y="1470"/>
+    <use href="#s" x="0" y="1680"/>
+    <use href="#s" x="494" y="1680"/>
+    <use href="#s" x="988" y="1680"/>
+    <use href="#s" x="1482" y="1680"/>
+    <use href="#s" x="1976" y="1680"/>
+    <use href="#s" x="2470" y="1680"/>
+  </g>
+</svg>

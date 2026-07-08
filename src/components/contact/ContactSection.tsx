@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   FiArrowRight,
@@ -7,6 +8,7 @@ import {
   FiClock,
   FiGlobe,
   FiMail,
+  FiMapPin,
   FiPhone,
 } from "react-icons/fi";
 import { companyContact, globalOffices } from "@/lib/contact";
@@ -39,6 +41,7 @@ const quickContacts = [
 export default function ContactSection() {
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: "", phone: "", email: "", type: "", details: "" });
+  const headOffice = globalOffices[0];
 
   return (
     <>
@@ -509,94 +512,18 @@ export default function ContactSection() {
         .ct-office-head {
           display: flex;
           align-items: center;
-          gap: 12px;
+          gap: 14px;
           margin-bottom: 14px;
         }
         .ct-office-flag {
           position: relative;
-          width: 18px;
-          height: 18px;
-          border-radius: 999px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
+          width: 40px;
+          height: 28px;
+          border-radius: 6px;
           overflow: hidden;
-          border: 1px solid rgba(255,255,255,0.18);
+          border: 1px solid rgba(255,255,255,0.24);
           box-shadow: 0 4px 10px rgba(40,23,80,0.18);
           flex-shrink: 0;
-        }
-        .ct-office-flag.flag-india {
-          background: linear-gradient(to bottom, #ff9933 0 33.33%, #ffffff 33.33% 66.66%, #138808 66.66% 100%);
-        }
-        .ct-office-flag.flag-india::after {
-          content: "";
-          position: absolute;
-          inset: 5px;
-          border-radius: 50%;
-          border: 1.2px solid #1a4ea1;
-        }
-        .ct-office-flag.flag-usa {
-          background:
-            linear-gradient(to bottom,
-              #b22234 0 14.28%, #ffffff 14.28% 28.56%,
-              #b22234 28.56% 42.84%, #ffffff 42.84% 57.12%,
-              #b22234 57.12% 71.4%, #ffffff 71.4% 85.68%,
-              #b22234 85.68% 100%);
-        }
-        .ct-office-flag.flag-usa::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 52%;
-          height: 52%;
-          background: #3c3b6e;
-        }
-        .ct-office-flag.flag-usa::after {
-          content: "";
-          position: absolute;
-          top: 3px;
-          left: 3px;
-          width: 2px;
-          height: 2px;
-          border-radius: 50%;
-          background: rgba(255,255,255,0.9);
-          box-shadow:
-            4px 0 0 rgba(255,255,255,0.9),
-            0 4px 0 rgba(255,255,255,0.9),
-            4px 4px 0 rgba(255,255,255,0.9);
-        }
-        .ct-office-flag.flag-australia {
-          background: #1e3a8a;
-        }
-        .ct-office-flag.flag-australia::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 58%;
-          height: 58%;
-          background:
-            linear-gradient(0deg, transparent 42%, #ffffff 42% 58%, transparent 58%),
-            linear-gradient(90deg, transparent 42%, #ffffff 42% 58%, transparent 58%),
-            linear-gradient(45deg, transparent 44%, #ffffff 44% 56%, transparent 56%),
-            linear-gradient(-45deg, transparent 44%, #ffffff 44% 56%, transparent 56%),
-            linear-gradient(0deg, transparent 46%, #c8102e 46% 54%, transparent 54%),
-            linear-gradient(90deg, transparent 46%, #c8102e 46% 54%, transparent 54%);
-          background-color: #012169;
-        }
-        .ct-office-flag.flag-australia::after {
-          content: "";
-          position: absolute;
-          right: 3px;
-          bottom: 3px;
-          width: 3px;
-          height: 3px;
-          border-radius: 50%;
-          background: #ffffff;
-          box-shadow:
-            -5px -4px 0 0 rgba(255,255,255,0.95),
-            -1px -8px 0 0 rgba(255,255,255,0.95);
         }
         .ct-office-city {
           font-size: 1rem;
@@ -616,10 +543,86 @@ export default function ContactSection() {
           display: block;
         }
 
+        .ct-map-section {
+          margin-top: 32px;
+        }
+        .ct-map-card {
+          background: #fff;
+          border: 1px solid #e8e3f8;
+          box-shadow: 0 12px 38px rgba(40,23,80,0.07);
+          border-radius: 24px;
+          overflow: hidden;
+        }
+        .ct-map-top {
+          display: grid;
+          grid-template-columns: minmax(300px, .86fr) minmax(0, 1.14fr);
+          gap: 0;
+        }
+        .ct-map-copy {
+          padding: 30px 28px;
+          background: linear-gradient(180deg, #fdfcff 0%, #f7f3ff 100%);
+          border-right: 1px solid #ece6fb;
+        }
+        .ct-map-title {
+          font-size: 1.2rem;
+          font-weight: 900;
+          color: #181125;
+          letter-spacing: -0.03em;
+          margin-bottom: 10px;
+        }
+        .ct-map-desc {
+          font-size: 0.92rem;
+          line-height: 1.75;
+          color: #6d7389;
+          margin-bottom: 18px;
+        }
+        .ct-map-address {
+          display: flex;
+          align-items: flex-start;
+          gap: 12px;
+          padding: 16px 18px;
+          border-radius: 16px;
+          background: #fff;
+          border: 1px solid #ece6fb;
+          box-shadow: 0 10px 24px rgba(40,23,80,0.05);
+        }
+        .ct-map-address-icon {
+          width: 38px;
+          height: 38px;
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #ab8cf5;
+          background: rgba(171,140,245,0.12);
+          flex-shrink: 0;
+        }
+        .ct-map-address-lines {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          color: #5e647d;
+          font-size: 0.9rem;
+          line-height: 1.65;
+        }
+        .ct-map-frame {
+          position: relative;
+          min-height: 340px;
+          background: #e9ebf0;
+        }
+        .ct-map-iframe {
+          width: 100%;
+          height: 100%;
+          min-height: 340px;
+          border: 0;
+        }
+
         @media (max-width: 1100px) {
           .ct-hero { padding: 80px 48px 72px; }
           .ct-body { padding: 70px 48px 78px; }
           .ct-layout { grid-template-columns: 1fr; }
+          .ct-map-top { grid-template-columns: 1fr; }
+          .ct-map-copy { border-right: none; border-bottom: 1px solid #ece6fb; }
         }
         @media (max-width: 768px) {
           .ct-hero { padding: 68px 24px 60px; }
@@ -761,8 +764,8 @@ export default function ContactSection() {
             >
               <div className="ct-section-head">
                 <div>
-                  <div className="ct-kicker">Global Offices</div>
-                  <div className="ct-intro-title">Our office network</div>
+                  <div className="ct-kicker">Global Presence</div>
+                  <div className="ct-intro-title">Build Right Tech LLC</div>
                   <div className="ct-section-copy">
                     The contact page now uses the same office addresses as the footer, presented in a dedicated grid so each location has enough breathing room and remains easy to scan.
                   </div>
@@ -784,7 +787,15 @@ export default function ContactSection() {
                     transition={{ duration: 0.45, delay: index * 0.06 }}
                   >
                     <div className="ct-office-head">
-                      <span className={`ct-office-flag flag-${office.country}`} aria-hidden="true" />
+                      <span className="ct-office-flag" aria-hidden="true">
+                        <Image
+                          src={office.flag}
+                          alt={`${office.city} flag`}
+                          fill
+                          style={{ objectFit: "fill" }}
+                          sizes="40px"
+                        />
+                      </span>
                       <span className="ct-office-city">{office.city}</span>
                     </div>
                     <div className="ct-office-address">
@@ -794,6 +805,37 @@ export default function ContactSection() {
                     </div>
                   </motion.div>
                 ))}
+              </div>
+
+              <div className="ct-map-section">
+                <div className="ct-map-card">
+                  <div className="ct-map-top">
+                    <div className="ct-map-copy">
+                      <div className="ct-kicker">Lewisville Office</div>
+                      <div className="ct-map-title">Visit Our USA Location</div>
+                      <div className="ct-map-desc">
+                        A dedicated map section for our Lewisville, USA office so the location is easy to identify and navigate from the contact page itself.
+                      </div>
+                      <div className="ct-map-address">
+                        <div className="ct-map-address-icon"><FiMapPin size={18} /></div>
+                        <div className="ct-map-address-lines">
+                          {headOffice.address.map((line) => (
+                            <span key={line}>{line}</span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="ct-map-frame">
+                      <iframe
+                        className="ct-map-iframe"
+                        src="https://maps.google.com/maps?q=520%20Four%20Stones%20Blvd%2C%20Lewisville%2C%20TX%2075058%2C%20USA&z=15&output=embed"
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        title="Lewisville USA office map"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </motion.section>
           </div>

@@ -16,9 +16,15 @@ export const metadata: Metadata = {
   title: "Build Right Tech — Engineering Excellence",
   description: "Precision precast, structural steel, and innovative construction solutions.",
   icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
-    apple: "/favicon.png",
+    icon: [
+      { url: "/favicon.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon.png", type: "image/png", sizes: "48x48" },
+      { url: "/favicon.png", type: "image/png", sizes: "96x96" },
+      { url: "/favicon.png", type: "image/png", sizes: "192x192" },
+      { url: "/favicon.png", type: "image/png", sizes: "512x512" },
+    ],
+    shortcut: [{ url: "/favicon.png", type: "image/png" }],
+    apple: [{ url: "/favicon.png", type: "image/png", sizes: "180x180" }],
   },
 };
 
@@ -33,7 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main style={{ flex: 1, minHeight: "100vh" }}>{children}</main>
         <Footer />
-        <FloatingSocialDock />
+        {/* <FloatingSocialDock /> */}
         <BackToTop />
       </body>
     </html>

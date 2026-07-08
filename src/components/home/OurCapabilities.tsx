@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { FiLayers, FiRotateCcw, FiGrid, FiHome, FiArrowUpRight } from "react-icons/fi";
 
@@ -9,14 +10,14 @@ const capabilities = [
     icon: <FiLayers size={20} />,
     title: "Precast",
     desc: "We provide precision-driven Precast Concrete Detailing Services for commercial, residential, industrial, infrastructure, and institutional projects worldwide. Our detailing solutions ensure accurate coordination, efficient manufacturing, and seamless on-site installation.",
-    href: "/services",
+    href: "/services/precast",
   },
   {
     num: "02",
     icon: <FiRotateCcw size={20} />,
     title: "Tilt-up Services",
     desc: "We deliver precise and construction-ready Tilt-Up Shop Drawings and Embed Panel Detailing Services, ensuring seamless coordination and compliance with project specifications.",
-    href: "/services",
+    href: "/services/tilt-up",
   },
   {
     num: "03",
@@ -30,11 +31,13 @@ const capabilities = [
     icon: <FiHome size={20} />,
     title: "PEMB (Pre-Engineered Metal Buildings)",
     desc: "Complete building systems designed for optimum strength and flexibility. Our PEMB solutions are perfect for hangars, manufacturing plants, and logistics centers, offering a significant reduction in construction time and cost.",
-    href: "/services",
+    href: "/services/pemb",
   },
 ];
 
 export default function OurCapabilities() {
+  const router = useRouter();
+
   return (
     <>
       <style>{`
@@ -268,10 +271,19 @@ export default function OurCapabilities() {
               <motion.div
                 key={cap.num}
                 className="cap-card"
+                role="link"
+                tabIndex={0}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.6, delay: (i % 2) * 0.1 }}
+                onClick={() => router.push(cap.href)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    router.push(cap.href);
+                  }
+                }}
               >
                 <div className="cap-num">{cap.num}</div>
                 <div className="cap-icon-wrap">{cap.icon}</div>
@@ -302,5 +314,3 @@ export default function OurCapabilities() {
     </>
   );
 }
-
-

@@ -253,7 +253,7 @@ export default function WhoWeAre() {
             </motion.div>
             <motion.div variants={fadeUp(0.4)} className="wwa-stats">
               <div className="wwa-stat">
-                <div className="wwa-stat-num">10000<span>+</span></div>
+                <div className="wwa-stat-num">20000<span>+</span></div>
                 <div className="wwa-stat-label">Projects Completed</div>
               </div>
               <div className="wwa-stat">

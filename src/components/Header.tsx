@@ -11,7 +11,8 @@ const navLinks = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Projects", href: "/projects" },
-  { label: "Our Team", href: "/our-team" },
+  // { label: "Our Team", href: "/our-team" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Header() {
@@ -245,18 +246,18 @@ export default function Header() {
       `}</style>
 
       <header className={`hdr${scrolled ? " scrolled" : ""}`}>
-        <div className="hdr-topbar">
-          <span className="hdr-topbar-item"><span className="hdr-topbar-dot" />+91 9876543211</span>
-          <span className="hdr-topbar-item"><span className="hdr-topbar-dot" />buildrighttech@gmail.com</span>
-        </div>
+        {/* <div className="hdr-topbar">
+          <span className="hdr-topbar-item"><span className="hdr-topbar-dot" />+001 4698289888</span>
+          <span className="hdr-topbar-item"><span className="hdr-topbar-dot" />Sales@buildrighttec.com</span>
+        </div> */}
         <div className="hdr-inner">
           <Link href="/" className="hdr-logo">
             <Image
-              src="/buildright-tech.png"
+              src="/buildright-tech.jpeg"
               alt="Build Right Tech"
               width={150}
               height={36}
-              style={{ height: 75, width: "auto", objectFit: "contain" }}
+              style={{ height: 45, width: "auto", objectFit: "contain" }}
               priority
             />
           </Link>
@@ -283,11 +284,11 @@ export default function Header() {
             })}
           </nav>
 
-          <div className="hdr-right">
+          {/* <div className="hdr-right">
             <Link href="/contact" className="hdr-cta">
               Contact <FiArrowRight size={14} />
             </Link>
-          </div>
+          </div> */}
 
           <button
             className="hdr-hamburger"
