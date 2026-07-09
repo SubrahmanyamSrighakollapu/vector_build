@@ -20,7 +20,7 @@ const PROJECTS = [
   {
     id: 2,
     category: "Tilt-Up",
-    image: "/tiltup-WOODS-Road-Building.PNG",
+    image: "/tiltup-WOODS-ROAD-BUILDING.PNG",
     title: "WOODS ROAD - BUILDING",
     desc: "A precision-built tilt-up commercial structure designed to deliver structural efficiency, reliability, and lasting value.",
     location: "WOODS RD BROOKSHIRE, TEXAS",
@@ -52,7 +52,7 @@ const PROJECTS = [
   {
     id: 5,
     category: "Tilt-Up",
-    image: "/tiltup-FLORIDA-MECHANICAL-SYSTEMS-BUILDING.PNG",
+    image: "/tiltup-FLORIDA-MECHANICAL-SYSTEMS-OFFICE-BUILDING.PNG",
     title: "FLORIDA MECHANICAL SYSTEMS OFFICE BUILDING",
     desc: "A professionally engineered tilt-up office facility delivering functional workspaces with superior structural integrity",
     location: "STOCKTON ST. JACKSONVILLE, FL",
@@ -63,7 +63,7 @@ const PROJECTS = [
   {
     id: 6,
     category: "Tilt-Up",
-    image: "/tiltup-ALLIANCE-HAFER-BLDG.PNG",
+    image: "/tiltup-ALLIANCE-HAFER- BLDG.PNG",
     title: "ALLIANCE - HAFER BLDG",
     desc: "A purpose-built tilt-up commercial facility designed to maximize efficiency, durability, and construction quality.",
     location: "NORTH FWY HOUSTON, TX",
@@ -135,7 +135,6 @@ const PROJECTS = [
   { id: 20, category: "Mini/Self Storages", image: "/MiniSelf-Storages-Image9.png", title: "Mini/Self Storages", desc: "Flexible building systems designed for rapid expansion and evolving storage requirements.", location: "Rexburg, ID 83440", area: "101k sq ft", year: "2018" },
   { id: 21, category: "Mini/Self Storages", image: "/MiniSelf-Storages-Image10.png", title: "Mini/Self Storages", desc: "Featuring robust structural design and advanced security for dependable asset protection.", location: "Tallahassee, FL", area: "113k sq ft", year: "2017" },
 ];
-console.log(PROJECTS.filter(p => p.title === "WOODS ROAD - BUILDING"));
 
 const CAT_COLORS: Record<string, string> = {
   "Tilt-Up": "#ab8cf5",
