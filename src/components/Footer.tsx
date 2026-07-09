@@ -243,7 +243,7 @@ export default function Footer() {
             <div className="footer-brand-col">
               <div className="footer-logo-wrap">
                 <Link href="/">
-                  <Image src="/buildright-tech-footer.png" alt="Build Right Tech" width={150} height={46} style={{ height: 80, width: "auto", objectFit: "contain" }} />
+                  <Image src="/buildright-tech-footer-logo.png" alt="Build Right Tech" width={200} height={46} style={{ height: 135, width: "auto", objectFit: "contain" }} />
                 </Link>
               </div>
               <p className="footer-tagline">

@@ -7,7 +7,7 @@ import { FiArrowUpRight, FiLayers, FiGrid, FiRotateCcw, FiHome } from "react-ico
 const services = [
   { title: "Precast", sub: "Concrete Detailing", image: "/pre-cast.png", href: "/services/precast", icon: <FiLayers size={16} />, num: "01" },
   { title: "Tilt-Up", sub: "Shop Drawings & Embeds", image: "/tilt-up.png", href: "/services/tilt-up", icon: <FiRotateCcw size={16} />, num: "02" },
-  { title: "Mini/Self Storages", sub: "Detailing & Coordinated Models", image: "/mini-self-storages.png", href: "/services/mini-self-storages", icon: <FiGrid size={16} />, num: "03" },
+  { title: "Mini/Self Storages", sub: "Detailing & Fabrication-Ready Shop Drawings", image: "/mini-self-storages.png", href: "/services/mini-self-storages", icon: <FiGrid size={16} />, num: "03" },
   { title: "PEMB", sub: "Design & Detailing", image: "/pemb.png", href: "/services/pemb", icon: <FiHome size={16} />, num: "04" },
 ];
 

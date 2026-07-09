@@ -253,11 +253,11 @@ export default function Header() {
         <div className="hdr-inner">
           <Link href="/" className="hdr-logo">
             <Image
-              src="/buildright-tech.jpeg"
+              src="/buildright-tech-logo.png"
               alt="Build Right Tech"
               width={150}
               height={36}
-              style={{ height: 45, width: "auto", objectFit: "contain" }}
+              style={{ height: 135, width: "auto", objectFit: "contain" }}
               priority
             />
           </Link>
@@ -314,7 +314,7 @@ export default function Header() {
             <div className="hdr-mobile-top">
               <Link href="/" className="hdr-logo" onClick={() => setMenuOpen(false)}>
                 <Image
-                  src="/buildright-tech.png"
+                  src="/buildright-tech-logo.png"
                   alt="Build Right Tech"
                   width={120}
                   height={32}
