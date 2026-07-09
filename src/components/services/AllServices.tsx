@@ -2,13 +2,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { FiArrowUpRight, FiLayers, FiGrid, FiRotateCcw, FiHome } from "react-icons/fi";
+import { FiArrowUpRight } from "react-icons/fi";
 
 const services = [
-  { title: "Precast", sub: "Concrete Detailing", image: "/pre-cast.png", href: "/services/precast", icon: <FiLayers size={16} />, num: "01" },
-  { title: "Tilt-Up", sub: "Shop Drawings & Embeds", image: "/tilt-up.png", href: "/services/tilt-up", icon: <FiRotateCcw size={16} />, num: "02" },
-  { title: "Mini/Self Storages", sub: "Detailing & Fabrication-Ready Shop Drawings", image: "/mini-self-storages.png", href: "/services/mini-self-storages", icon: <FiGrid size={16} />, num: "03" },
-  { title: "PEMB", sub: "Design & Detailing", image: "/pemb.png", href: "/services/pemb", icon: <FiHome size={16} />, num: "04" },
+  { title: "Precast", sub: "Concrete Detailing", image: "/pre-cast.png", href: "/services/precast", iconImage: "/precast-icon.png", num: "01" },
+  { title: "Tilt-Up", sub: "Shop Drawings & Embeds", image: "/tilt-up.png", href: "/services/tilt-up", iconImage: "/titl-up-icon.png", num: "02" },
+  { title: "Mini/Self Storages", sub: "Detailing & Fabrication-Ready Shop Drawings", image: "/mini-self-storages.png", href: "/services/mini-self-storages", iconImage: "/storages-icon.png", num: "03" },
+  { title: "PEMB", sub: "Design & Detailing", image: "/pemb.png", href: "/services/pemb", iconImage: "/pemb-icon.png", num: "04" },
 ];
 
 export default function AllServices() {
@@ -130,6 +130,13 @@ export default function AllServices() {
         .svc-card:hover .svc-card-badge {
           background: rgba(171,140,245,0.2);
           border-color: rgba(171,140,245,0.5); color: #fff;
+        }
+        .svc-card-badge-icon {
+          position: relative;
+          width: 30px;
+          height: 30px;
+          flex-shrink: 0;
+          filter: drop-shadow(0 3px 8px rgba(10,6,24,0.22));
         }
 
         .svc-card-num {
@@ -272,7 +279,18 @@ export default function AllServices() {
                     sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
                   />
                   <div className="svc-card-overlay" />
-                  <div className="svc-card-badge">{svc.icon} {svc.sub}</div>
+                  <div className="svc-card-badge">
+                    <span className="svc-card-badge-icon" aria-hidden="true">
+                      <Image
+                        src={svc.iconImage}
+                        alt=""
+                        fill
+                        sizes="20px"
+                        style={{ objectFit: "contain" }}
+                      />
+                    </span>
+                    {svc.sub}
+                  </div>
                   <div className="svc-card-num">{svc.num}</div>
                   <div className="svc-card-body">
                     <div>
@@ -306,4 +324,3 @@ export default function AllServices() {
     </>
   );
 }
-

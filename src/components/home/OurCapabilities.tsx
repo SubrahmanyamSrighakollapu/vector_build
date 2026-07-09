@@ -1,34 +1,35 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { FiLayers, FiRotateCcw, FiGrid, FiHome, FiArrowUpRight } from "react-icons/fi";
+import { FiArrowUpRight } from "react-icons/fi";
 
 const capabilities = [
   {
     num: "01",
-    icon: <FiLayers size={20} />,
+    iconImage: "/precast-icon.png",
     title: "Precast",
     desc: "We provide precision-driven Precast Concrete Detailing Services for commercial, residential, industrial, infrastructure, and institutional projects worldwide. Our detailing solutions ensure accurate coordination, efficient manufacturing, and seamless on-site installation.",
     href: "/services/precast",
   },
   {
     num: "02",
-    icon: <FiRotateCcw size={20} />,
+    iconImage: "/titl-up-icon.png",
     title: "Tilt-up Services",
     desc: "We deliver precise and construction-ready Tilt-Up Shop Drawings and Embed Panel Detailing Services, ensuring seamless coordination and compliance with project specifications.",
     href: "/services/tilt-up",
   },
   {
     num: "03",
-    icon: <FiGrid size={20} />,
+    iconImage: "/storages-icon.png",
     title: "Mini/Self Storages",
     desc: "We produce accurate shop drawings, fabrication drawings, framing layouts, and coordinated CAD/BIM models that enhance structural accuracy, optimize space utilization, and support efficient fabrication and construction.",
     href: "/services/mini-self-storages",
   },
   {
     num: "04",
-    icon: <FiHome size={20} />,
+    iconImage: "/pemb-icon.png",
     title: "PEMB (Pre-Engineered Metal Buildings)",
     desc: "Complete building systems designed for optimum strength and flexibility. Our PEMB solutions are perfect for hangars, manufacturing plants, and logistics centers, offering a significant reduction in construction time and cost.",
     href: "/services/pemb",
@@ -164,7 +165,7 @@ export default function OurCapabilities() {
         .cap-card:hover .cap-num { color: rgba(171,140,245,0.12); }
 
         .cap-icon-wrap {
-          width: 48px; height: 48px;
+          width: 58px; height: 58px;
           border-radius: 12px;
           background: rgba(171,140,245,0.12);
           border: 1px solid rgba(171,140,245,0.2);
@@ -178,9 +179,19 @@ export default function OurCapabilities() {
         }
         .cap-card:hover .cap-icon-wrap {
           background: #ab8cf5;
-          color: #0a0618;
           border-color: #ab8cf5;
           box-shadow: 0 8px 24px rgba(171,140,245,0.4);
+        }
+        .cap-icon-img {
+          position: relative;
+          width: 40px;
+          height: 40px;
+          transition: transform 0.3s ease, filter 0.3s ease;
+          filter: drop-shadow(0 4px 12px rgba(10,6,24,0.16));
+        }
+        .cap-card:hover .cap-icon-img {
+          transform: scale(1.06);
+          filter: drop-shadow(0 8px 16px rgba(10,6,24,0.22));
         }
 
         .cap-card-title {
@@ -286,7 +297,17 @@ export default function OurCapabilities() {
                 }}
               >
                 <div className="cap-num">{cap.num}</div>
-                <div className="cap-icon-wrap">{cap.icon}</div>
+                <div className="cap-icon-wrap">
+                  <span className="cap-icon-img" aria-hidden="true">
+                    <Image
+                      src={cap.iconImage}
+                      alt=""
+                      fill
+                      sizes="34px"
+                      style={{ objectFit: "contain" }}
+                    />
+                  </span>
+                </div>
                 <div className="cap-card-body">
                   <div className="cap-card-title">{cap.title}</div>
                   <p className="cap-card-desc">{cap.desc}</p>
