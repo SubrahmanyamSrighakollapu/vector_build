@@ -10,7 +10,7 @@ const PROJECTS = [
   {
     id: 1,
     category: "Tilt-Up",
-    image: "/tiltup-Trade-Park-East-Building.png",
+    image: "/tiltup-Trade-Park-East-Building.PNG",
     title: "Trade Park East Building 4",
     desc: "A modern tilt-up industrial facility engineered for durability, rapid construction, and long-term operational performance",
     location: "Weber Boulevard Ladson, SC",
@@ -20,7 +20,7 @@ const PROJECTS = [
   {
     id: 2,
     category: "Tilt-Up",
-    image: "/tiltup-WOODS-Road-Building.png",
+    image: "/tiltup-WOODS-Road-Building.PNG",
     title: "WOODS ROAD - BUILDING",
     desc: "A precision-built tilt-up commercial structure designed to deliver structural efficiency, reliability, and lasting value.",
     location: "WOODS RD BROOKSHIRE, TEXAS",
@@ -30,7 +30,7 @@ const PROJECTS = [
   {
     id: 3,
     category: "Tilt-Up",
-    image: "/tiltup-328-BARNES.png",
+    image: "/tiltup-328-BARNES.PNG",
     title: "328 BARNES",
     desc: "A high-quality tilt-up development combining efficient construction techniques with exceptional structural performance.",
     location: "BARNES DRIVE SAN MARCOS, TX",
@@ -41,7 +41,7 @@ const PROJECTS = [
   {
     id: 4,
     category: "Tilt-Up",
-    image: "/tiltup-LAMPROS-STEEL.png",
+    image: "/tiltup-LAMPROS-STEEL.PNG",
     title: "LAMPROS STEEL",
     desc: "A robust tilt-up industrial building designed to support demanding operations through strength, precision, and durability.",
     location: "SE 13th AVENUE CANBY, OR",
@@ -52,7 +52,7 @@ const PROJECTS = [
   {
     id: 5,
     category: "Tilt-Up",
-    image: "/tiltup-FLORIDA-MECHANICAL-SYSTEMS-BUILDING.png",
+    image: "/tiltup-FLORIDA-MECHANICAL-SYSTEMS-BUILDING.PNG",
     title: "FLORIDA MECHANICAL SYSTEMS OFFICE BUILDING",
     desc: "A professionally engineered tilt-up office facility delivering functional workspaces with superior structural integrity",
     location: "STOCKTON ST. JACKSONVILLE, FL",
@@ -63,7 +63,7 @@ const PROJECTS = [
   {
     id: 6,
     category: "Tilt-Up",
-    image: "/tiltup-ALLIANCE-HAFER-BLDG.png",
+    image: "/tiltup-ALLIANCE-HAFER-BLDG.PNG",
     title: "ALLIANCE - HAFER BLDG",
     desc: "A purpose-built tilt-up commercial facility designed to maximize efficiency, durability, and construction quality.",
     location: "NORTH FWY HOUSTON, TX",
@@ -74,7 +74,7 @@ const PROJECTS = [
   {
     id: 7,
     category: "Tilt-Up",
-    image: "/tiltup-TECTONIC-GREENSBORO.png",
+    image: "/tiltup-TECTONIC-GREENSBORO.PNG",
     title: "TECTONIC - GREENSBORO",
     desc: "An advanced tilt-up industrial project engineered to meet high-performance operational and structural requirements.",
     location: "MCCONNELL ROAD GREENSBORO NC",
@@ -85,7 +85,7 @@ const PROJECTS = [
   {
     id: 8,
     category: "Tilt-Up",
-    image: "/tiltup-LINCOLN-LOGISTICS-ROCKLAND.png",
+    image: "/tiltup-LINCOLN-LOGISTICS-ROCKLAND.PNG",
     title: "LINCOLN LOGISTICS - ROCKLAND",
     desc: "A state-of-the-art tilt-up logistics center designed for efficient distribution, operational flexibility, and long-term reliability.",
     location: "EXECUTIVE BOULEVARD, VALLEY COTTAGE, NY",
@@ -95,7 +95,7 @@ const PROJECTS = [
   {
     id: 9,
     category: "Tilt-Up",
-    image: "/tiltup-GATEWAY-NW-LOGISTICS-CENTER.png",
+    image: "/tiltup-GATEWAY-NW-LOGISTICS-CENTER.PNG",
     title: "GATEWAY NW LOGISTICS CENTER",
     desc: "A modern tilt-up warehouse facility engineered to optimize logistics operations, durability, and construction efficiency.",
     location: "JENKINS ROAD GASTONIA, NC",
@@ -106,7 +106,7 @@ const PROJECTS = [
   {
     id: 10,
     category: "Tilt-Up",
-    image: "/tiltup-BRIDGE-POINT-EVERETT-500-BUILDING.png",
+    image: "/tiltup-BRIDGE-POINT-EVERETT-500-BUILDING.PNG",
     title: "BRIDGE POINT EVERETT 500 - BUILDING",
     desc: "A large-scale tilt-up distribution facility designed to deliver exceptional strength, fast-track construction, and reliable long-term performance",
     location: "36TH AVE WEST EVERETT, WA",
