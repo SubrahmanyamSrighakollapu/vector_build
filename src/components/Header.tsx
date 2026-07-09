@@ -247,7 +247,7 @@ export default function Header() {
 
       <header className={`hdr${scrolled ? " scrolled" : ""}`}>
         {/* <div className="hdr-topbar">
-          <span className="hdr-topbar-item"><span className="hdr-topbar-dot" />+001 4698289888</span>
+          <span className="hdr-topbar-item"><span className="hdr-topbar-dot" />+1 4698289888</span>
           <span className="hdr-topbar-item"><span className="hdr-topbar-dot" />Sales@buildrighttec.com</span>
         </div> */}
         <div className="hdr-inner">

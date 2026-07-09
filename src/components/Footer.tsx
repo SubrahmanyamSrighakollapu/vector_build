@@ -46,6 +46,7 @@ export default function Footer() {
         .footer-logo-wrap { margin-bottom: 20px; }
         .footer-tagline {
           font-size: 0.875rem;
+          font-weight: 650;
           line-height: 1.8;
           color: rgba(216,202,250,0.5);
           max-width: 400px;
@@ -62,6 +63,7 @@ export default function Footer() {
           align-items: center;
           gap: 10px;
           font-size: 0.82rem;
+          font-weight: 650;
           color: rgba(216,202,250,0.5);
           transition: color 0.2s ease;
         }
@@ -99,6 +101,7 @@ export default function Footer() {
         .footer-col-links { display: flex; flex-direction: column; gap: 10px; }
         .footer-col-link {
           font-size: 0.875rem;
+          font-weight: 650;
           color: rgba(216,202,250,0.5);
           transition: color 0.2s ease, padding-left 0.2s ease;
         }
@@ -151,6 +154,7 @@ export default function Footer() {
         }
         .footer-office-address {
           font-size: 0.93rem;
+          font-weight: 650;
           line-height: 1.58;
           color: rgba(216,202,250,0.54);
           max-width: 360px;
@@ -166,6 +170,7 @@ export default function Footer() {
           justify-content: space-between;
           padding: 20px 0;
           font-size: 0.78rem;
+          font-weight: 650;
           color: #fff;
           flex-wrap: wrap;
           gap: 8px;

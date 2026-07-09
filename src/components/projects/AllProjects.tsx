@@ -35,7 +35,7 @@ const PROJECTS = [
     desc: "A high-quality tilt-up development combining efficient construction techniques with exceptional structural performance.",
     location: "BARNES DRIVE SAN MARCOS, TX",
     area: "82.8k sq ft",
-    year: "2025",
+    year: "2024",
   },
 
   {
@@ -46,7 +46,7 @@ const PROJECTS = [
     desc: "A robust tilt-up industrial building designed to support demanding operations through strength, precision, and durability.",
     location: "SE 13th AVENUE CANBY, OR",
     area: "92k sq ft",
-    year: "2025",
+    year: "2023",
   },
 
   {
@@ -57,7 +57,7 @@ const PROJECTS = [
     desc: "A professionally engineered tilt-up office facility delivering functional workspaces with superior structural integrity",
     location: "STOCKTON ST. JACKSONVILLE, FL",
     area: "22.248k sq ft",
-    year: "2025",
+    year: "2022",
   },
 
   {
@@ -68,7 +68,7 @@ const PROJECTS = [
     desc: "A purpose-built tilt-up commercial facility designed to maximize efficiency, durability, and construction quality.",
     location: "NORTH FWY HOUSTON, TX",
     area: "362.03k sq ft",
-    year: "2025",
+    year: "2021",
   },
 
   {
@@ -79,7 +79,7 @@ const PROJECTS = [
     desc: "An advanced tilt-up industrial project engineered to meet high-performance operational and structural requirements.",
     location: "MCCONNELL ROAD GREENSBORO NC",
     area: "293.76k sq ft",
-    year: "2025",
+    year: "2020",
   },
 
   {
@@ -90,7 +90,7 @@ const PROJECTS = [
     desc: "A state-of-the-art tilt-up logistics center designed for efficient distribution, operational flexibility, and long-term reliability.",
     location: "EXECUTIVE BOULEVARD, VALLEY COTTAGE, NY",
     area: "220k sq ft",
-    year: "2025",
+    year: "2019",
   },
   {
     id: 9,
@@ -100,7 +100,7 @@ const PROJECTS = [
     desc: "A modern tilt-up warehouse facility engineered to optimize logistics operations, durability, and construction efficiency.",
     location: "JENKINS ROAD GASTONIA, NC",
     area: "166.4k sq ft",
-    year: "2025",
+    year: "2018",
   },
 
   {
@@ -111,7 +111,7 @@ const PROJECTS = [
     desc: "A large-scale tilt-up distribution facility designed to deliver exceptional strength, fast-track construction, and reliable long-term performance",
     location: "36TH AVE WEST EVERETT, WA",
     area: "100.848k sq ft",
-    year: "2025",
+    year: "2017",
   },
 
   {

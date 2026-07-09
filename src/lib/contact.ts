@@ -1,5 +1,5 @@
 export const companyContact = {
-  phoneDisplay: "+001 4698289888",
+  phoneDisplay: "+1 4698289888",
   phoneE164: "919876543212",
   email: "Sales@buildrighttec.com",
   socials: {
@@ -32,8 +32,8 @@ export const globalOffices = [
     country: "india",
     flag: "/flags/india-rect.svg",
     address: [
-      "Novel Tech Park, Hosur Rd, Kudlu Gate,",
-      "Krishna Reddy Industrial Areas, H.S.R Extension, Bengaluru,",
+      "Novel Tech Park, Hosur Road, Kudlu",
+      "Gate, Krishna Reddy Industrial Areas, H.S.R Extension, Bengaluru,",
       "Karnataka 560068",
     ],
   },
