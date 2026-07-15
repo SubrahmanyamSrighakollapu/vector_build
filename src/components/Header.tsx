@@ -19,6 +19,15 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const normalizedPath = pathname === "/" ? "/" : pathname.replace(/\/+$/, "");
+
+  const isActiveLink = (href: string) => {
+    if (href === "/") {
+      return normalizedPath === "/";
+    }
+
+    return normalizedPath === href || normalizedPath.startsWith(`${href}/`);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -264,7 +273,7 @@ export default function Header() {
 
           <nav className="hdr-nav">
             {navLinks.map((link) => {
-              const active = pathname === link.href;
+              const active = isActiveLink(link.href);
               return (
                 <Link
                   key={link.href}
@@ -328,7 +337,7 @@ export default function Header() {
 
             <div className="hdr-mobile-links">
               {navLinks.map((link, i) => {
-                const active = pathname === link.href;
+                const active = isActiveLink(link.href);
                 return (
                   <motion.div
                     key={link.href}

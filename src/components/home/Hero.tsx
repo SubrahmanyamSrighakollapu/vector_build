@@ -43,17 +43,6 @@ const fadeUp = {
   show: (i: number) => ({ opacity: 1, y: 0, transition: { duration: 0.7, delay: i * 0.12, ease: "easeOut" as const } }),
 };
 
-const wordVariants = {
-  hidden: { opacity: 0, y: 40, rotateX: -20 },
-  show: (i: number) => ({
-    opacity: 1, y: 0, rotateX: 0,
-    transition: { duration: 0.6, delay: 0.3 + i * 0.1, ease: "easeOut" as const },
-  }),
-};
-
-const line1Words = ["Building", "Precision."];
-const line2Words = ["Engineering", "Excellence."];
-
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end start"] });
@@ -234,6 +223,9 @@ export default function Hero() {
           margin-bottom: 0;
           letter-spacing: -2px;
         }
+        .hero-title-line {
+          display: block;
+        }
         .hero-title-line2 {
           display: block;
           background: linear-gradient(135deg, #ab8cf5 0%, #d8cafa 50%, #ab8cf5 100%);
@@ -242,6 +234,10 @@ export default function Hero() {
           -webkit-text-fill-color: transparent;
           background-clip: text;
           animation: shimmer 4s linear infinite;
+        }
+        .hero-title-word-gap {
+          display: inline-block;
+          width: 0.24em;
         }
         @keyframes shimmer {
           0% { background-position: 0% center; }
@@ -801,23 +797,14 @@ export default function Hero() {
             Industrial Construction Experts
           </motion.div>
 
-          <motion.h1 className="hero-title hero-title-idle" initial="hidden" animate="show" style={{ perspective: 600 }}>
-            <span style={{ display: "block" }}>
-              {line1Words.map((w, i) => (
-                <motion.span key={w} custom={i} variants={wordVariants} initial="hidden" animate="show"
-                  style={{ display: "inline-block", marginRight: "0.25em" }}>
-                  {w}
-                </motion.span>
-              ))}
-            </span>
-            <span className="hero-title-line2 hero-title-line2-idle" style={{ display: "block" }}>
-              {line2Words.map((w, i) => (
-                <motion.span key={w} custom={i + 2} variants={wordVariants} initial="hidden" animate="show"
-                  style={{ display: "inline-block", marginRight: "0.25em" }}>
-                  {w}
-                </motion.span>
-              ))}
-            </span>
+          <motion.h1
+            className="hero-title hero-title-idle"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            <span className="hero-title-line">Building<span className="hero-title-word-gap" />Precision.</span>
+            <span className="hero-title-line2 hero-title-line2-idle">Engineering<span className="hero-title-word-gap" />Excellence.</span>
           </motion.h1>
 
           <motion.p
